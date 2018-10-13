@@ -337,7 +337,7 @@
 					var showGuide = plus.storage.getItem("lauchFlag");
 					plus.screen.lockOrientation("portrait-primary");
 					if(showGuide) {
-						preload()
+						setTimeout(preload, 500)
 					} else {
 						//显示启动导航
 						mui.openWindow({
@@ -359,8 +359,6 @@
 							preload();
 						}, 2000);
 					}
-				
-				setTimeout(preload, 500)
 				setInterval(function() {
 					var d = new Date();
 					var h = d.getHours(),

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/util.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				width: 100%;
+				background-color: #efeff4;
+				margin: auto;
+				padding: auto;
+				text-align: center;
+				margin-right: auto;
+			}
+			
+			div {
+				border-radius: 10px;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.imgimg {
+				width: 100%;
+				height: 300px;
+				max-height: 90%;
+				text-align: center;
+				border-radius: 10px;
+				border: 0;
+				margin-top: 8px;
+				background: url(../images/loading.gif) center;
+				background-size: 100% 100%;
+			}
+			
+			.adimg {
+				width: 100%;
+				height: 350px;
+				max-height: 90%;
+				text-align: center;
+				border-radius: 10px;
+				border: 0;
+				margin-top: 8px;
+				background: url(../images/loading.gif) center;
+				background-size: 100% 100%;
+			}
+			
+			.logoimg {
+				position: absolute;
+				background: url(../images/logo60x60.png) center;
+				width: 60px;
+				height: 60px;
+				text-align: center;
+				left: 85%;
+				margin-top: 50px;
+				-webkit-transform: translateX(-50%) translateY(-50%);
+				-moz-transform: translateX(-50%) translateY(-50%);
+				-ms-transform: translateX(-50%) translateY(-50%);
+				transform: translateX(-50%) translateY(-50%);
+			}
+			
+			.title-header-color {
+				background-color: #FF0000;
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--页面标题栏开始-->
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">广告中心</h1>
+		</div>
+		<!--页面内容开始-->
+		<div class="mui-content" style="width: 100%;text-align: center;">
+			<div id="div-loading" class="animated bounceInDown imgimg"></div>
+			<img id="img-show" class="animated bounceInDown mui-hidden adimg"></div>
+		<!--<div class="flex-wrap">-->
+		<div id="div-logo" class="mui-hidden logoimg"></div>
+		</div>
+		<script>
+			var ssss, bRunTime
+			mui.init({
+				swipeBack: false
+			});
+
+			mui.plusReady(function() {
+				plus.device.setWakelock(true); //一直处于唤醒状态
+
+				/**
+				本窗口显示时，再播放广告
+				*/
+				mui.currentWebview.addEventListener("show", function() {
+					start()
+
+				});
+				mui.currentWebview.addEventListener("hide", function() {
+					end()
+
+				});
+
+			});
+			
+			function start() {
+				bMain = true;
+
+					//准备显示界面
+					document.getElementById("div-loading").classList.remove("mui-hidden");
+					document.getElementById("img-show").classList.add("mui-hidden");
+					document.getElementById("div-logo").classList.add("mui-hidden");
+
+					//看是否激活、注册和登录
+					if(!localStorage.getItem('token')) { //没有激活，注册，登录
+						customFontWaiting("请您务必首先到首页中激活、注册和登录，才能快速领取广告费！", 10);
+						return;
+					}
+
+					//判断当前网络情况
+					//plus.networkinfo.CONNECTION_UNKNOW = "未知";状态码：0 
+					//plus.networkinfo.CONNECTION_NONE = "无网络链接"; 状态码：1
+					//plus.networkinfo.CONNECTION_ETHERNET = "有线网络"; 状态码：2
+					//plus.networkinfo.CONNECTION_WIFI = "无线网络"; 状态码：3
+					//plus.networkinfo.CONNECTION_CELL2G = "蜂窝移动2G网络"; 状态码：4
+					//plus.networkinfo.CONNECTION_CELL3G = "蜂窝移动3G网络"; 状态码：5
+					//plus.networkinfo.CONNECTION_CELL4G = "蜂窝移动4G网络"; 状态码：6
+					if(plus.networkinfo.getCurrentType() < 3) { // 3为状态码，wifi状态码是3
+						mui.toast("无法连接互联网，瓜分宝无法完成您的全部请求操作......");
+						return;
+					} else if(plus.networkinfo.getCurrentType() != 3) {
+						mui.toast("正在使用蜂窝移动网络,瓜分宝会造成非包月移动客户会产生流量费！");
+					}
+					//开始分润
+					var time = 12
+					var mask = mui.createMask();
+					//向服务器发送扫描数据
+					//var posturl = "http://192.168.1.106:8080/appdata/register";
+					var posturl = "http://gfb.wotuijie.com/api/image";
+					console.log('Bearer ' + localStorage.getItem('token'))
+					console.log("posturl:" + posturl);
+					mui.ajax(posturl, {
+						dataType: 'JSON', //服务器返回json格式数据  
+						type: 'GET', //HTTP请求类型  
+						timeout: 20000, //超时时间设置为10秒；
+						headers: {
+							'Authorization': 'Bearer ' + localStorage.getItem('token'),
+							'Accept': 'application/json'
+						}, //;charset=UTF-8
+						beforeSend: function() {
+							console.log("正在注册验证中......");
+							plus.nativeUI.showWaiting("......", {
+								padlock: true,
+								loading: {
+									icon: "images/waiting.png"
+								}
+							});
+							mask.show(); //显示遮罩层  
+						},
+						complete: function() {
+							plus.nativeUI.closeWaiting();
+							mask.close(); //关闭遮罩层  
+						},
+						success: function(data) {
+							if(!bRunTime) {
+								bRunTime = true
+							}
+							mask.close(); //关闭遮罩层  
+							//服务器返回响应，根据响应结果，分析是否登录成功；   
+							console.log(data)
+							var dt = JSON.parse(data);
+							if(dt.message === 'success') {
+								time = dt.data.time
+								var _time = parseInt(time / 4)
+								document.querySelector("#img-show").classList.remove('mui-hidden')
+								document.querySelector("#div-logo").classList.remove('mui-hidden')
+								document.getElementById("div-loading").classList.add("mui-hidden")
+								document.querySelector("#img-show").src = dt.data.url
+								customWaiting("加载广告资源", _time);
+								//2、适配IP
+								mui.later(function() {
+									if(bRunTime) {
+										if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+											document.getElementById("div-loading").classList.add("mui-hidden");
+											document.getElementById("img-show").classList.remove("mui-hidden");
+											document.getElementById("div-logo").classList.remove("mui-hidden");
+										}
+										customWaiting("适配系统IP，准备分润", _time);
+									}
+								}, 1000 * _time * 0);
+								//3、开始分润
+								mui.later(function() {
+									if(bRunTime) {
+										if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+											document.getElementById("div-loading").classList.add("mui-hidden");
+											document.getElementById("img-show").classList.remove("mui-hidden");
+											document.getElementById("div-logo").classList.remove("mui-hidden");
+										}
+										customWaiting("请求分润", _time);
+									}
+								}, 1000 * _time * 1);
+								//4、获得广告收益
+								mui.later(function() {
+									if(bRunTime) {
+										if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+											document.getElementById("div-loading").classList.add("mui-hidden");
+											document.getElementById("img-show").classList.remove("mui-hidden");
+											document.getElementById("div-logo").classList.remove("mui-hidden");
+										}
+										customFontWaiting("协商获得广告收益：+ " + dt.data.last_amount, _time);
+									}
+								}, 1000 * (_time) * 2);
+								//5、保存分润结果
+								mui.later(function() {
+									if(bRunTime) {
+										if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+											document.getElementById("div-loading").classList.add("mui-hidden");
+											document.getElementById("img-show").classList.remove("mui-hidden");
+											document.getElementById("div-logo").classList.remove("mui-hidden");
+										}
+										customWaiting("正在保存广告收益+" + +dt.data.last_amount, _time); //long
+
+									}
+								}, 1000 * (_time) * 3);
+								ssss = setInterval(function() {
+									startMoney()
+								}, time * 1000)
+								//6等待
+								//		          			mui.later(function(){
+								//		          				//等待下一次开始
+								//				    			document.getElementById("div-loading").classList.remove("mui-hidden");
+								//								document.getElementById("img-show").classList.add("mui-hidden");
+								//								document.getElementById("div-logo").classList.add("mui-hidden");
+								//		          			},1000*(_time)*5);
+
+							} else {
+								mui.alert(dt.msg);
+								console.log(dt.msg);
+							}
+						},
+
+						error: function(xhr, type, errorThrown) {
+							console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+							plus.nativeUI.closeWaiting();
+							mask.close(); //关闭遮罩层
+							mui.alert(JSON.parse(xhr.response).message);
+							//						mui.toast('请先登录')
+						}
+					})
+			}
+			
+			function end() {
+				bMain = false
+					//clearInterval(AdT);
+					bRunTime = false; //停止分润
+					document.getElementById("div-loading").classList.add("mui-hidden");
+					document.getElementById("img-show").classList.remove("mui-hidden");
+					document.getElementById("div-logo").classList.remove("mui-hidden");
+					clearInterval(ssss)
+					plus.nativeUI.closeWaiting();
+			}
+			
+			document.addEventListener("pause", function () {
+			    console.log("应用从前台切换到后台");
+			    end()
+			}, false);
+			document.addEventListener("resume", function () {
+			    console.log("应用从后台切换到前台");
+			    start()
+			    
+			}, false);
+
+			function customWaiting(context, waiting) {
+				//mui.toast(context);
+				//var w=plus.nativeUI.showWaiting("正在登录中，请等待...\n5", {padlock:true,loading:{icon:"images/waiting.png"}});
+				var w = plus.nativeUI.showWaiting(context + "，请等待...\n" + waiting, {
+					modal: false,
+					padlock: true,
+					loading: {
+						icon: "/images/waiting.png"
+					}
+				});
+				w.onclose = function() {
+					clearInterval(t);
+				}
+				var n = waiting;
+				var t = setInterval(function() {
+					n--;
+					w.setTitle(context + "，请等待...\n" + n);
+					if(n <= 0) {
+						w.close();
+						clearInterval(t);
+					}
+				}, 1000);
+			}
+			//大字体等待
+			function customFontWaiting(context, waiting) {
+				var w = plus.nativeUI.showWaiting(context + "\n" + waiting, {
+					modal: false,
+					padlock: true,
+					loading: {
+						icon: "/images/waiting.png"
+					},
+					color: "#FF0000",
+					size: "16px"
+				});
+				w.onclose = function() {
+					clearInterval(t);
+				}
+				var n = waiting;
+				var t = setInterval(function() {
+					n--;
+					w.setTitle(context + "\n" + n);
+					if(n <= 0) {
+						w.close();
+						clearInterval(t);
+					}
+				}, 1000);
+			}
+			//启动浏览
+			function startMoney() {
+				var mask = mui.createMask();
+				//向服务器发送扫描数据
+				//var posturl = "http://192.168.1.106:8080/appdata/register";
+				var posturl = "http://gfb.wotuijie.com/api/image";
+				console.log('Bearer ' + localStorage.getItem('token'))
+				console.log("posturl:" + posturl);
+				mui.ajax(posturl, {
+					dataType: 'JSON', //服务器返回json格式数据  
+					type: 'GET', //HTTP请求类型  
+					timeout: 20000, //超时时间设置为10秒；
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem('token'),
+						'Accept': 'application/json'
+					}, //;charset=UTF-8
+					beforeSend: function() {
+						console.log("正在注册验证中......");
+						plus.nativeUI.showWaiting("......", {
+							padlock: true,
+							loading: {
+								icon: "images/waiting.png"
+							}
+						});
+						mask.show(); //显示遮罩层  
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层  
+					},
+					success: function(data) {
+						if(!bRunTime) {
+							bRunTime = true
+						}
+						mask.close(); //关闭遮罩层  
+						//服务器返回响应，根据响应结果，分析是否登录成功；   
+						console.log(data)
+						var dt = JSON.parse(data);
+						if(dt.message === 'success') {
+							time = dt.data.time
+							var _time = parseInt(time / 4)
+							document.querySelector("#img-show").classList.remove('mui-hidden')
+							document.querySelector("#div-logo").classList.remove('mui-hidden')
+							document.getElementById("div-loading").classList.add("mui-hidden")
+							document.querySelector("#img-show").src = dt.data.url
+							customWaiting("加载广告资源", _time);
+							//2、适配IP
+							mui.later(function() {
+								if(bRunTime) {
+									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customWaiting("适配系统IP，准备分润", _time)
+									console.log(1)
+								}
+							}, 1000 * _time * 0);
+							//3、开始分润
+							mui.later(function() {
+								if(bRunTime) {
+									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customWaiting("请求分润", _time);
+									console.log(2)
+								}
+							}, 1000 * _time * 1);
+							//4、获得广告收益
+							mui.later(function() {
+								if(bRunTime) {
+									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customFontWaiting("协商获得广告收益：+ " + dt.data.last_amount, _time);
+									console.log(3)
+								}
+							}, 1000 * (_time) * 2);
+							//5、保存分润结果
+							mui.later(function() {
+								if(bRunTime) {
+									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customWaiting("正在保存广告收益+" + +dt.data.last_amount, _time); //long
+console.log(4)
+								}
+							}, 1000 * (_time) * 3);
+							//6等待
+							//		          			mui.later(function(){
+							//		          				//等待下一次开始
+							//				    			document.getElementById("div-loading").classList.remove("mui-hidden");
+							//								document.getElementById("img-show").classList.add("mui-hidden");
+							//								document.getElementById("div-logo").classList.add("mui-hidden");
+							//		          			},1000*(_time)*5);
+
+						} else {
+							mui.alert(dt.msg);
+							console.log(dt.msg);
+						}
+					},
+
+					error: function(xhr, type, errorThrown) {
+						console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层
+						mui.alert(JSON.parse(xhr.response).message);
+						//						mui.toast('请先登录')
+					}
+				})
+
+				//				});
+			}
+		</script>
+	</body>
+
+</html>

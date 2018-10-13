@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<!--header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Methods: GET, POST");
+		header("Access-Control-Allow-Headers: Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With");-->
+		<script src="js/mui.min.js"></script>
+		<script src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				width: 100%;
+				background-color: #efeff4;
+				margin:auto;
+				padding:auto;
+				text-align:center;
+				margin-right:auto;
+			}
+			div
+			{
+				border-radius: 10px;
+				text-align:center;
+				margin-left:auto;
+				margin-right:auto;
+			} 
+			ul li{
+				list-style: none;
+			}
+			.imgimg{
+				width:100%;
+				height:200px;
+				text-align: center;
+				margin: 10px auto;
+				border-radius: 10px;
+				border:1px solid #FF0000;
+			} 
+			.textdesc{
+				overflow: hidden;
+				float: center;
+				text-align: center;
+				width:100%; 
+				height:20px; 
+				margin-top:20px;
+				color: #007AFF;
+			} 
+			.title-header-color{
+				background-color: #FF0000;	
+				color: #FFFFFF;			
+			}
+		</style>
+	</head>
+
+	<body >
+		<!--页面标题栏开始-->
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">首页</h1>
+		</div>
+		<!--页面内容开始-->
+		<div id="div-scanbar" style="margin-top: 50px;" >			 
+			<div class="textdesc" > 第一步：扫二维码激活</div>
+			<div style="background:url(images/scanning.gif) center;background-size:100% 100%; " class="imgimg" id="scanbar" ></div>
+			<a class="textdesc" id="scanbar" >点击扫码</a>
+			<hr style="margin-top: 20px; height:1px;border:none;border-top:2px solid #666666;" />
+			<ul id="history" class="dlist" style="text-align:left;font-size: 10px;color: #222222;">
+				<li id="nohistory" class="ditem" onclick="onempty()">无历史记录	</li>
+			</ul>
+		</div>	
+		<div id ="div-userreg" class="mui-content mui-hidden">			 
+			<div class="textdesc"> 第二步：注册账户</div>
+			<!--<div id="userreg"  style="background:url(images/register4.gif) center; background-size:100% 100%;" class="imgimg"></div>-->
+			<div class="mui-page-content " style="margin-top: 10px;text-align: left;padding:0;width:100%;height:100%;">
+				<div class="mui-scroll">
+					<ul class="mui-table-view mui-input-group">
+						<li class="mui-table-view-divider" style="text-align: left;font-size:10px ;">紧急联系手机号码：</li>
+						<li class="mui-table-view-cell">
+							<input id="telvalue" id="telvalue" type="tel" style="font-size: 10pt;" class="mui-input-clear" placeholder="请填写11位手机号码">
+						</li>
+						
+						<li class="mui-table-view-divider" style="text-align: left;font-size: 10px;">接收广告费的支付宝账户：</li>
+						<li class="mui-table-view-cell" >
+							<input name="accountvalue" id="accountvalue" type="text" class="mui-input-clear" style="font-size: 10pt;" placeholder="可收款的支付宝账户">
+						</li>
+						<li class="mui-table-view-divider" style="text-align: left;font-size:10px ;">再输一次支付宝账户：</li>
+						<li class="mui-table-view-cell">
+							<input name="accountvaluex" id="accountvaluex" type="text" class="mui-input-clear" style="font-size: 10pt;" placeholder="可收款的支付宝账户">
+						</li>
+						<li class="mui-table-view-divider" style="text-align: left;font-size: 10px;">支付宝账户姓名：</li>
+						<li class="mui-table-view-cell" >
+							<input name="accountname" id="accountname" type="text" class="mui-input-clear" style="font-size: 10pt;" placeholder="支付宝账户姓名">
+						</li>
+						<li class="mui-table-view-divider" style="font-size: 10pt;text-align: left;" >重要提示：务必确保支付宝账户信息输入正确，一旦发生错误。您将无法提取广告费！！！</li>
+					</ul> 
+					<ul class="mui-table-view" style="top: 20px;" id="info">
+						<li class="mui-table-view-cell" style="text-align: center;" id="inforegister">
+							<a class="mui-btn-primary" style="color: white;"  >&nbsp;&nbsp;注册&nbsp;&nbsp;</a>
+						</li>
+						<li class="mui-table-view-cell" style="text-align: center;margin-top: 10px;" id="inforeset">
+							<a class="mui-btn-danger" style="color: white;"  >&nbsp;&nbsp;重填&nbsp;&nbsp;</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="div-userlogin" class="mui-content mui-hidden">			 
+			<div class="textdesc" id="loginTitle"> 登录收钱</div>
+			<img id="userlogin" src="images/scantip.gif" class="imgimg"></img>
+			
+			<hr style="margin-top: 100px; height:1px;border:none;border-top:2px solid #666666;" />
+			<ul id="loginhistory" class="dlist" style="text-align:left;font-size: 10px;color: #222222;">
+				<li id="santime" class="ditem" >无登录历史数据</li>
+				<li id="registertime" class="ditem" ></li>
+				<li id="logintime" class="ditem" ></li>
+			</ul>
+		</div> 
+		
+		<script src="js/util.js"></script>
+		<script src="js/jquery-3.1.0.min.js"></script>
+		<script src="libs/tools-code.js"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady(){
+				
+			}
+			if(window.plus){
+				
+				plusReady();
+			}else{
+				document.addEventListener("plusready",plusReady,false);
+			}
+			
+			var vShowMessage;
+			var blist = 0;	
+			(function() {
+				var bd64 = new Base64();
+				mui.init({
+					swipeBack: true, //启用右滑关闭功能
+					statusBarBackground: '#f7f7f7'
+				});
+				
+				mui.plusReady(function() {
+					//读取本地存储，检查是否为首次启动
+					var showGuide = plus.storage.getItem("lauchFlag");
+					//仅支持竖屏显示
+					plus.screen.lockOrientation("portrait-primary");
+					if(showGuide) {
+						//有值，说明已经显示过了，无需显示；
+						//关闭splash页面；
+						plus.navigator.closeSplashscreen();
+						plus.navigator.setFullscreen(false);
+						//预加载
+						preload();
+						
+					} else {
+						//显示启动导航
+						mui.openWindow({
+							id: 'guide',
+							url: 'html/guide.html',
+							styles: {
+								popGesture: "none"
+							},
+							show: {
+								aniShow: 'none'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+						//延迟的原因：优先打开启动导航页面，避免资源争夺
+						setTimeout(function() {
+							//预加载
+							preload();
+						}, 2000);
+						
+					}
+					
+					vShowMessage=setInterval(function(){
+		            	var d = new Date();
+						var h=d.getHours(),m=d.getMinutes(),s=d.getSeconds(),ms=d.getMilliseconds();
+						if(h < 10){ h='0'+h; }
+						if(m < 10){ m='0'+m; }
+						if(s < 10){ s='0'+s; }
+						if(ms < 10){ ms='00'+ms; }
+						else if(ms < 100){ ms='0'+ms; }
+						
+						var li=null,hl = document.getElementById('history');
+						if(blist > 0){
+							li = document.createElement('li');
+							li.className = 'ditem';
+							hl.insertBefore(li, hl.childNodes[0]);
+						} else{
+							li = document.getElementById('nohistory');
+						}
+						li.id = blist;
+						var html = h+':'+m+':'+s+'.'+ms+'    VIP客户浏览广告获得利润：+<font style="color:#FF0000">';
+						html += Math.round(Math.random()*1000)/10000;
+						html += '</font>';
+						li.innerHTML = html;
+						blist++;
+					},500);
+					mui.currentWebview.addEventListener("show",function(){
+						showHomePageContent();
+						//判断当前网络情况
+						           
+						//plus.networkinfo.CONNECTION_UNKNOW = "未知";状态码：0 
+						//plus.networkinfo.CONNECTION_NONE = "无网络链接"; 状态码：1
+						//plus.networkinfo.CONNECTION_ETHERNET = "有线网络"; 状态码：2
+						//plus.networkinfo.CONNECTION_WIFI = "无线网络"; 状态码：3
+						//plus.networkinfo.CONNECTION_CELL2G = "蜂窝移动2G网络"; 状态码：4
+						//plus.networkinfo.CONNECTION_CELL3G = "蜂窝移动3G网络"; 状态码：5
+						//plus.networkinfo.CONNECTION_CELL4G = "蜂窝移动4G网络"; 状态码：6
+						if(plus.networkinfo.getCurrentType()<3){// 3为状态码，wifi状态码是3
+			                mui.toast("无法连接互联网，瓜分宝无法完成您的全部请求操作......");
+			            }else if(plus.networkinfo.getCurrentType() !=3){
+			            	mui.toast("正在使用蜂窝移动网络,瓜分宝会造成非包月移动客户会产生流量费！");
+			            }
+			            
+					});
+				});
+				mui('#info').on('click','#inforinforeseteset', function() {
+					mui("#telvalue")[0].value = '';
+					mui("#accountvaluex")[0].value = '';
+					mui("#accountvalue")[0].value = '';
+				});
+				/**
+				 * 注册窗口
+				 */
+				mui('#info').on('click','#inforegister', function() {
+					var check = true;
+					var telvalue = mui("#telvalue")[0].value;
+				  	//若当前input为空，则alert提醒
+				  	if(!telvalue || telvalue.trim() ==''){
+					    mui.alert("手机号码 不允许为空");
+					    check = false;
+					    return false;
+					}
+					if(isNaN(telvalue) || telvalue.length != 11){
+					    mui.alert("手机号码必须是11位数字");
+					    check = false;
+					    return ;
+					}
+					telvalue = mui("#telvalue")[0].value.trim();
+					
+					var accountvalue = mui("#accountvalue")[0].value;
+				  	//若当前input为空，则alert提醒
+				  	if(!accountvalue || accountvalue.trim() ==''){
+					    mui.alert("支付宝账户不允许为空");
+					    check = false;
+					    return false;
+					}
+				  	var accountvaluex = mui("#accountvaluex")[0].value;
+				  	if(accountvalue != accountvaluex){
+					    mui.alert("两次输入的支付宝账户不一致，请您重新输入");
+					    mui("#accountvaluex")[0].value = '';
+					    mui("#accountvalue")[0].value = '';
+					    check = false;
+					    return false;
+					}
+				  	accountvalue = mui("#accountvalue")[0].value.trim();
+					var accountname = mui("#accountname")[0].value;
+				  	//若当前input为空，则alert提醒
+				  	if(!accountname || accountname.trim() ==''){
+					    mui.alert("支付宝姓名不允许为空");
+					    check = false;
+					    return false;
+					}
+				  	accountname = mui("#accountname")[0].value.trim();
+					//校验通过，继续执行业务逻辑
+					if(check){
+						registered(telvalue ,accountvalue,accountname);
+					}
+				});
+				function showHomePageContent(){
+					//初始化界面:如果二维码区域有存储值，则覆盖遮罩层
+					var strSystem = localStorage.getItem("AdDevice-system")|| '';
+					if (strSystem !== '') {//已经激活
+						document.getElementById("div-scanbar").classList.add("mui-hidden");
+						
+						//初始化界面：如果注册区域没有存储值，则去掉遮罩层
+						var strRegiser = localStorage.getItem("AdDevice-register")|| '';
+						if (strRegiser == '' ) {
+							document.getElementById("div-userreg").classList.remove("mui-hidden");
+						}else{//注册区域：有存储值
+							//初始化界面：如果登录区域没有存储值，则去掉遮罩层
+							strRegiser = localStorage.getItem("AdDevice-account")|| '';
+							if(strRegiser == '' ) {//登录区域没有值
+								document.getElementById("div-userlogin").classList.remove("mui-hidden");
+								//用户登录事件绑定
+						        mui('#div-userlogin').on('click','#userlogin', function() {
+						            loginService();//调用登录
+									
+									//展示登录计时区域
+									loginTiming();
+							    });
+				    
+							}else{//有值，可正常浏览广告
+								document.getElementById("userlogin").src = "images/money2.gif";
+								document.getElementById("loginTitle").classList.add("mui-hidden");
+								document.getElementById("div-userlogin").classList.remove("mui-hidden");
+							}
+						}
+					}else{//没有注册，更改为可点击状态
+						//扫描二维码事件绑定leg(1)
+				        mui('#div-scanbar').on('click','#scanbar', function() {
+				            clicked('html/barcode_scan.html',true,true);
+				        });
+				        document.getElementById("div-scanbar").classList.remove("mui-hidden");
+					}
+					//展示登录计时区域
+					loginTiming();
+				}
+				//初始化，并预加载webview模式的选项卡			
+				function preload() {
+					var self = plus.webview.currentWebview(),
+						leftPos = Math.ceil((window.innerWidth - 60) / 2); // 设置凸起大图标为水平居中
+					
+					// 创建子webview窗口 并初始化
+					var aniShow = {};
+					util.initSubpage(aniShow);
+					
+					var 	nview = plus.nativeObj.View.getViewById('AdDevicetabBar'),
+							activePage = plus.webview.currentWebview(),
+							targetPage,
+							subpages = util.options.subpages,
+							pageW = window.innerWidth,
+							currIndex = 0;
+							
+					/**	
+					 * drawNativeIcon 绘制带边框的半圆，
+					 * 实现原理：
+					 *   id为bg的tag 创建带边框的圆
+					 *   id为bg2的tag 创建白色矩形遮住圆下半部分，只显示凸起带边框部分
+					 * 	 id为iconBg的红色背景图
+					 *   id为icon的字体图标
+					 *   注意创建先后顺序，创建越晚的层级越高
+					 */
+					var drawNativeIcon = util.drawNative('icon', {
+						bottom: '5px',
+						left: leftPos + 'px',
+						width: '60px',
+						height: '60px'
+					}, [{
+						tag: 'rect',
+						id: 'bg',
+						position: {
+							top: '1px',
+							left: '0px',
+							width: '100%',
+							height: '100%'
+						},
+						rectStyles: {
+							color: '#fff',
+							radius: '50%',
+							borderColor: '#ccc',
+							borderWidth: '1px'
+						}
+					}, {
+						tag: 'rect',
+						id: 'bg2',
+						position: {
+							bottom: '-0.5px',
+							left: '0px',
+							width: '100%',
+							height: '45px'
+						},
+						rectStyles: {
+							color: '#fff'
+						}
+					}, {
+						tag: 'rect',
+						id: 'iconBg',
+						position: {
+							top: '5px',
+							left: '5px',
+							width: '50px',
+							height: '50px'
+						},
+						rectStyles: {
+							color: '#ff0000',
+							radius: '50%'
+						}
+					}, {
+						tag: 'font',
+						id: 'icon',
+						text: '\ue600', //此为字体图标Unicode码'\e600'转换为'\ue600'
+						position: {
+							top: '0px',
+							left: '5px',
+							width: '50px',
+							height: '100%'
+						},
+						textStyles: {
+							fontSrc: '_www/fonts/iconfont.ttf',
+							align: 'center',
+							color: '#000',
+							size: '30px'
+						}
+					}]);
+					// append 到父webview中
+					self.append(drawNativeIcon);
+
+					//自定义监听图标点击事件
+					drawNativeIcon.addEventListener('click', function(e) {
+						// 判断是否需要切换颜色
+						targetPage = plus.webview.getWebviewById(subpages[0]);
+						if(targetPage == activePage) {
+							console.log("Money repeat");
+							return false;
+						}
+						// 重绘字体颜色
+						drawNativeIcon.drawText('\ue600', {}, {
+							fontSrc: '_www/fonts/iconfont.ttf',
+							align: 'center',
+							color: '#fff',
+							size: '30px'
+						}, 'icon');
+						
+//						//底部选项卡切换
+						util.toggleNview(1);
+						// 子页面切换						
+						util.changeSubpage(targetPage, activePage, aniShow);
+						//更新当前活跃的页面
+						activePage = targetPage;
+						
+						return false;
+						throw "————————";
+					});
+					// 中间凸起图标绘制及监听点击完毕
+					
+					/**
+					 * 根据判断view控件点击位置判断切换的tab
+					 */
+					nview.addEventListener('click', function(e) {
+						var clientX = e.clientX;
+						
+						if(clientX > 0 && clientX <= parseInt(pageW * 0.4)) {
+							currIndex = 0;
+						} else if(clientX > parseInt(pageW * 0.4) && clientX <= parseInt(pageW * 0.6) ) {
+							currIndex = 1;
+						} else if(clientX > parseInt(pageW * 0.6)  ) {
+							currIndex = 2;
+						} 
+						//重置M颜色
+						if(currIndex != 1){
+							drawNativeIcon.drawText('\ue600', {}, {
+								fontSrc: '_www/fonts/iconfont.ttf',
+								align: 'center',
+								color: '#000',
+								size: '30px'
+							}, 'icon');
+						}
+						// 匹配对应tab窗口	
+						if(currIndex > 0) {
+							targetPage = plus.webview.getWebviewById(subpages[currIndex-1]);//首页不在配置文件内，故必须-1
+						} else {
+							targetPage = plus.webview.currentWebview();
+						}
+				
+						if(targetPage == activePage) {
+							console.log("other repeat");
+							return;
+						}
+				
+						//底部选项卡切换
+						util.toggleNview(currIndex);
+						// 子页面切换
+						util.changeSubpage(targetPage, activePage, aniShow);
+						//更新当前活跃的页面
+						activePage = targetPage;
+					});
+				};
+				
+				//处理主页面数据
+				showHomePageContent();
+				
+			})();
+			//登录计时
+			function loginTiming(){
+				var account = localStorage.getItem("AdDevice-account")||'';	
+//				var hl = document.getElementById('loginhistory');
+				if(account != ''){
+					var li=null;
+					if(!isNaN(account)){
+						var newDate = new Date();
+						newDate.setTime(account);
+						li = document.getElementById('logintime');
+						var html = '本机首次登录时间：<font style="color:#FF0000">';
+						html += newDate.toLocaleString();
+						html += '</font>';
+						li.innerHTML = html;
+						//去掉无记录标记
+						li = document.getElementById('santime');
+						li.innerHTML = '';
+					}else{
+						var d=new Date(parseInt(account) );
+						li = document.getElementById('santime');
+						var html = '在本机扫描激活二维码时间：<font style="color:#FF0000">';
+						html += localStorage.getItem("AdDevice-registerTime");
+						html += '</font>';
+						li.innerHTML = html;
+						
+						li = document.getElementById('registertime');
+						var html = '在本机成功注册时间：<font style="color:#FF0000">';
+						html += localStorage.getItem("AdDevice-systemTime");
+						html += '</font>';
+						li.innerHTML = html;					
+						
+						li = document.getElementById('logintime');
+						var html = '本机首次登录时间：<font style="color:#FF0000">';
+						html += account;
+						html += '</font>';
+						li.innerHTML = html;
+					}
+				}
+			}
+			//用户点击登录函数
+			function loginService(){
+				//完成登录,取消事件绑定
+				mui("#div-userlogin").off("click","#userlogin");
+				customWaiting();
+	            console.log("系统登录中");
+				var d = new Date();
+				localStorage.setItem("AdDevice-account",d.toLocaleString());		
+				document.getElementById("userlogin").src = "images/money2.gif";
+				document.getElementById("loginTitle").classList.add("mui-hidden");
+				//展示登录计时区域
+				loginTiming();
+			}
+			//扫描二维码回调函数
+			function scaned(t, r, f){
+				//plus.nativeUI.toast("准备核验二维码，请稍后 ！",{duration:"short"});//long
+				var d = new Date();
+				var qrstr = '{"qrtime":"'+d.getTime()+'","QRCode":"'+r.toString()+'",'
+						+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
+						+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '"}';
+				console.log("扫描结果："+qrstr);
+				var mask=mui.createMask();//遮罩层
+				var version ;
+				mui.getJSON("manifest.json",null,function(data){
+					var b64 = new Base64();
+					
+					//向服务器发送扫描数据  
+					//var posturl = "http://192.168.1.106:8080/appdata/scanqr";
+					var posturl = b64.decode(data.kernel.code)+"appdata/scanqr";
+					
+					mui.ajax(posturl,{
+						data:{"version":data.kernel.version,"kernel":b64.encode(data.kernel.kernel),"body":b64.encode(qrstr)},
+						dataType: 'JSON', //服务器返回json格式数据  
+				        type: 'POST', //HTTP请求类型  
+				        timeout: 20000, //超时时间设置为10秒；
+				        header:{'Content-Type': 'application/json'},//;charset=UTF-8
+						beforeSend: function() {  
+							console.log("正在请求验证中......"+posturl);
+							plus.nativeUI.showWaiting("正在请求验证中......",{padlock:true,loading:{icon:"images/waiting.png"}});
+					        mask.show();//显示遮罩层  
+					    },  
+					    complete: function() {  
+					        plus.nativeUI.closeWaiting();  
+					        mask.close();//关闭遮罩层  
+					    },  
+					    success: function(data) {
+					    	mask.close();//关闭遮罩层
+					        //服务器返回响应，根据响应结果，分析是否登录成功；   
+					        var dt = JSON.parse(data);
+					        if(dt.success){  
+					            mui.toast(dt.msg);  
+								
+					            //处理一下注册窗口
+					            mui("#accountvaluex")[0].value = '';
+				    			mui("#accountvalue")[0].value = '';
+				    			mui("#telvalue")[0].value = '';
+				    			mui("#accountname")[0].value = '';
+					            
+						        //登录成功
+								document.getElementById("div-scanbar").classList.add("mui-hidden");
+								mui("#div-scanbar").off("click",'#scanbar',null);
+								document.getElementById("div-userreg").classList.remove("mui-hidden");
+								
+					            //记录扫描返回时间
+					            var newDate = new Date();
+								newDate.setTime(dt.data);
+								localStorage.setItem("AdDevice-systemTime",newDate.toLocaleString());
+								console.log("AdDevice-systemTime:"+newDate.toLocaleString());
+								
+								//记录扫描数据
+								var  tim = new Date();
+								qrstr = '{"qrtime":"'+tim.toLocaleTimeString()+'","qrdate":"'+tim.toLocaleDateString()+'","QRCode":"'+r.toString()+'",'
+									+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
+									+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '"}';
+								localStorage.setItem("AdDevice-system",qrstr);
+								
+								//用户登录事件绑定
+						        mui('#div-userreg').on('click','#userreg', function() {
+						            clicked('html/register.html',true,true);
+							    });
+					        }else{  
+					            mui.alert(dt.msg);  
+					        }  
+					    },  
+					    error: function(xhr, type, errorThrown) { 
+					        console.log(xhr.toString()+"==========="+type+",****\nerrorThrown="+errorThrown+"\nposturl="+posturl);
+					        plus.nativeUI.closeWaiting(); 
+					        mask.close();//关闭遮罩层
+					        mui.alert('服务器连接超时，请稍后再试'); 
+					    }  
+					})
+				});
+				
+				
+			}
+			//扫描回调完毕
+			
+			//注册信息
+			function registered(tel, account,accountname){
+//				plus.nativeUI.toast("正在保存注册信息，请稍后 ！",{duration:"short"});//long
+				var dest = localStorage.getItem("AdDevice-system")||'';
+				if(dest == ''){
+					mui.toast("无法读取您的二维码信息!");
+					return ;
+				}
+				var str = JSON.parse( dest);
+				var d = new Date();
+				var qrstr = '{"qrtime":"'+d.getTime()+'","QRCode":"'+str.QRCode+'",'
+					+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
+					+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '",'
+					+ '"registerMobile":"' + tel + '","registerPayInfo":"' + account + '",'
+					+ '"registerName":"' + accountname + '"}';
+				//mui.alert(qrstr);
+				var mask=mui.createMask();//遮罩层
+				mui.getJSON("manifest.json",null,function(data){
+					var b64 = new Base64();
+					//向服务器发送扫描数据
+					//var posturl = "http://192.168.1.106:8080/appdata/register";
+					var posturl = b64.decode(data.kernel.code)+"appdata/register";
+					console.log("posturl:"+posturl);
+					mui.ajax(posturl,{
+						data:{"version":data.kernel.version,"kernel":b64.encode(data.kernel.kernel),
+							"body":b64.encode(qrstr)},
+						dataType: 'JSON', //服务器返回json格式数据  
+				        type: 'POST', //HTTP请求类型  
+				        timeout: 20000, //超时时间设置为10秒；
+				        header:{'Content-Type': 'application/json'},//;charset=UTF-8
+						beforeSend: function() {  
+							console.log("正在注册验证中......");
+							plus.nativeUI.showWaiting("正在注册验证中......",{padlock:true,loading:{icon:"images/waiting.png"}});
+					        mask.show();//显示遮罩层  
+					    },  
+					    complete: function() {  
+					        plus.nativeUI.closeWaiting();  
+					        mask.close();//关闭遮罩层  
+					    },  
+					    success: function(data) {
+					    	mask.close();//关闭遮罩层  
+					        //服务器返回响应，根据响应结果，分析是否登录成功；   
+					        var dt = JSON.parse(data);
+					        if(dt.success){  
+					            mui.toast(dt.msg);  
+					            
+					            //记录注册返回时间
+								var newDate = new Date();
+								newDate.setTime(dt.data);
+								localStorage.setItem("AdDevice-registerTime",newDate.toLocaleString());
+								console.log("AdDevice-registerTime:"+newDate.toLocaleString());
+								//记录注册结果
+								var str = '{"regname":"'+ accountname +'","regtel":"'+ tel +'","regaccount":"' + account + '"}';
+								localStorage.setItem("AdDevice-register",str);
+					            
+						        //登录成功
+								document.getElementById("div-userreg").classList.add("mui-hidden");
+								mui("#div-userreg").off("click",'#userreg',null);
+								document.getElementById("div-userlogin").classList.remove("mui-hidden");
+								document.getElementById("div-userlogin").classList.remove("mui-hidden");
+								//初始化访问次数
+								localStorage.setItem("AdDevice-readCount","1");
+								//用户登录事件绑定
+						        mui('#div-userlogin').on('click','#userlogin', function() {
+						            loginService();
+							    });
+					        }else{  
+					            mui.alert(dt.msg);  
+					            console.log(dt.msg);
+					        }  
+					    },  
+					    error: function(xhr, type, errorThrown) { 
+					        console.log(xhr.toString()+"==========="+type+",****\nerrorThrown="+errorThrown+"\nposturl="+posturl);
+					        plus.nativeUI.closeWaiting(); 
+					        mask.close();//关闭遮罩层
+					        mui.alert('服务器连接超时，请稍后再试'); 
+					    }  
+					})
+				});
+			}
+			
+			//等待中
+			function customWaiting(){
+				var w=plus.nativeUI.showWaiting("正在登录中，请等待...\n5", {padlock:true,loading:{icon:"images/waiting.png"}});
+				w.onclose=function(){
+					clearInterval(t);
+				}
+				var n=5; 
+				var t=setInterval(function(){
+					n--;
+					w.setTitle("正在登录中，请等待...\n"+n);
+					if(n<=0){
+						w.close();
+						clearInterval(t);
+					}
+				},1000);
+			}
+		</script>
+		<script type="text/javascript" src="js/immersed.js" ></script>
+	</body>
+
+</html>

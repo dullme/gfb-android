@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			
+			.title-header-color{
+				background-color: #FF0000;	
+				color: #FFFFFF;			
+			} 
+			
+			#version{margin-top:20px;font-size: 18px;}
+			.check{margin-top: 58%;}
+			.check li{padding: 16px 11px;}
+			.check a{font-size: 20px;}
+			.check p{font-size: 18px;margin-top: 5px;}
+			progress {border-radius: 2px;border-left: 1px #ccc solid;border-right: 1px #ccc solid;border-top: 1px #aaa solid;background-color: #eee;}
+			progress::-webkit-progress-bar {background-color: #d7d7d7;}
+			progress::-webkit-progress-value {background-color: #aadd6a;}
+			.updateProDiv {display: none;}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" style="color: #FFFFFF;">
+				<span class="mui-icon mui-icon-left-nav title-header-color"></span>会员中心
+			</button>
+			<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">检查更新</h1>
+		</div>
+		<div class="mui-content" style="height: 100%;">
+		    <div class="mui-scroll">
+		        <div class="login-img">
+		            <p id="version" style="margin-left: 50px;">当前应用版本:</p>
+		        </div>
+		    </div>
+		
+		     <ul class="mui-table-view check" id="check" style="margin-top: 100px;">
+		        <li class="mui-table-view-cell">
+		            <div class="updateProDiv">更新进度:
+		                <progress value="" max="" id="proDownFile"></progress>
+		                <span class="persent"></span>
+		            </div>
+		            <a href="#" id="update" class="mui-navigate-right" style="text-align: center;">检查更新</a>
+		        </li>
+		    </ul>
+			<!--<div class="mui-scroll" style="padding-bottom: 5px;width: 100%;text-align: right;">
+		        <div class="login-img"> 
+		            <img src="../images/logo.png" width="20%" />
+		        </div>
+		    </div>-->
+		</div>
+		
+		
+		<script src="../js/mui.min.js "></script>
+		<script src="../js/mui.view.js "></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery-3.1.0.min.js"></script>
+		<script src="../libs/tools-code.js"></script>	
+		<script type="text/javascript">
+			var ws=null,wo=null;
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+			var wgtVer=null;
+		    function plusReady(){ // 获取本地应用资源版本号
+	    		if(ws||!window.plus){
+					return;
+				}
+				// 获取窗口对象
+				ws=plus.webview.currentWebview();
+				wo=ws.opener();
+				ws.show('pop-in');
+				wo.evalJS('closeWaiting()');
+				
+		        plus.runtime.getProperty(plus.runtime.appid,function(inf){
+		            wgtVer=inf.version;
+		            version.innerHTML = '当前应用版本：'+wgtVer;
+		        });
+		    }
+		    if(window.plus){
+		        plusReady();
+		    }else{
+		        document.addEventListener('plusready',plusReady,false);
+		    }
+		    
+		    var ver;
+		    //休眠方法
+		    function sleep(numberMillis) {
+		        var now = new Date();
+		        var exitTime = now.getTime() + numberMillis;
+		        while (true) {
+		            now = new Date();
+		            if (now.getTime() > exitTime)
+		                return;
+		        }
+		    }
+		    
+		    mui('.mui-table-view-cell').on('click', '#update', function() {
+		    	mui.toast('已是最新版本')
+		    	return
+		    	console.log("update start ");
+		    	//更新页面
+	            mui.getJSON("../manifest.json",null,function(data){
+					var b64 = new Base64();
+					//向服务器发送扫描数据
+					var dest = localStorage.getItem("AdDevice-system") || '';
+					if(dest ==''){
+						mui.toast("仅对激活用户有效！");
+						return;
+					}
+					var str = JSON.parse(dest );
+					var qrstr = '{"qrtime":"' + new Date().getTime() +'","QRCode":"'+str.QRCode+'",'
+						+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
+						+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '"}';
+					
+					//var posturl = "http://192.168.1.106:8080/appdata/upgrade";
+					var posturl = b64.decode(data.kernel.code)+"appdata/upgrade";
+					console.log("posturl:"+posturl+qrstr);
+					mui.ajax(posturl,{
+						data:{"version":data.kernel.version,"kernel":b64.encode(data.kernel.kernel),
+							"body":b64.encode(qrstr)},
+						dataType: 'JSON', //服务器返回json格式数据  
+				        type: 'POST', //HTTP请求类型  
+				        timeout: 20000, //超时时间设置为10秒； 
+				        header:{'Content-Type': 'application/json'},//;charset=UTF-8
+					    success: function(data) {
+					    	console.log("update返回："+data);
+					        //服务器返回响应，根据响应结果，分析是否登录成功；   
+					        var dt = eval('('+ data +')'); //
+					        if(dt.success){
+					        	if (dt.msg == "1") {
+					        		console.log("ddd"+dt.data.address);
+									var btnArray = ['是', '否'];
+			                        mui.confirm('最新version是：' + dt.data.new+',是否更新', '发现最新版本', btnArray, function(z) {
+			                            if (z.index == 0) {
+			                                console.log('确定');
+			                                $('.updateProDiv').css('display', 'block');
+			                                $('#update').css('display', 'none');
+			                                var dtask = plus.downloader.createDownload(dt.data.address, {}, function(d, status) {
+			                                    if (status == 200) {
+			                                        clearInterval(i);
+			                                        $('.persent').html("100%");
+			                                        plus.nativeUI.toast("正在准备环境，请稍后！");
+			                                        sleep(1000);
+			                                        var path = d.filename;//_downloads yijietong.apk
+			                                        console.log(d.filename);
+			                                        $('#update').css('display', 'block');
+			                                        $('.updateProDiv').css('display', 'none');
+			                                        plus.runtime.install(path); // 安装下载的apk文件
+			                                    } else {
+			                                        alert('Download failed:' + status);
+			                                    }
+			                                });
+			                                dtask.start();
+			                                var i = setInterval(function() {
+			                                    var totalSize = dtask.totalSize;
+			                                    var downloadedSize = dtask.downloadedSize;
+			                                    $('#proDownFile').attr('value', downloadedSize);
+			                                    $('#proDownFile').attr('max', totalSize);
+			                                    console.log(dtask.downloadedSize);
+			                                    console.log(dtask.totalSize);
+			                                }, 100); //1000为1秒钟
+			                            } else {
+			                                console.log('不确定');
+			                                return;
+			                            }
+			                        });
+			                        
+								} else {
+									mui.toast('瓜分宝 已是最新版本~')
+								} 
+						        
+					        }else{
+					        	mui.alert(dt.msg); 
+					        	console.log("error");
+					        }
+					    },  
+					    error: function(xhr, type, errorThrown) { 
+					        console.log(xhr.toString()+"==========="+type+",****\nerrorThrown="+errorThrown+"\nposturl="+posturl);
+					        mui.alert('服务器连接超时，请稍后再试'); 
+					    }  
+					})
+				});
+			});
+		</script>
+	</body>
+
+</html>

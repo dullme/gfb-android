@@ -1,0 +1,1023 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		html,
+		body {
+			background-color: #efeff4;
+		}
+		
+		table {
+			border-collapse: collapse;
+		}
+		
+		table tr td {
+			border: 1px solid #e7e7e7;
+			height: 30px;
+			font-size: 10pt;
+		}
+		
+		table tr:nth-child(2n) {
+			background-color: #fbc9a7;
+		}
+		
+		.mui-views,
+		.mui-view,
+		.mui-pages,
+		.mui-page,
+		.mui-page-content {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #efeff4;
+		}
+		
+		.mui-pages {
+			top: 46px;
+			height: auto;
+		}
+		
+		.mui-scroll-wrapper,
+		.mui-scroll {
+			background-color: #efeff4;
+		}
+		
+		.mui-page.mui-transitioning {
+			-webkit-transition: -webkit-transform 300ms ease;
+			transition: transform 300ms ease;
+		}
+		
+		.mui-page-left {
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+		
+		.mui-ios .mui-page-left {
+			-webkit-transform: translate3d(-20%, 0, 0);
+			transform: translate3d(-20%, 0, 0);
+		}
+		
+		.mui-navbar {
+			position: fixed;
+			right: 0;
+			left: 0;
+			z-index: 10;
+			height: 44px;
+			background-color: #f7f7f8;
+		}
+		
+		.mui-navbar .mui-bar {
+			position: absolute;
+			background: transparent;
+			text-align: center;
+		}
+		
+		.mui-android .mui-navbar-inner.mui-navbar-left {
+			opacity: 0;
+		}
+		
+		.mui-ios .mui-navbar-left .mui-left,
+		.mui-ios .mui-navbar-left .mui-center,
+		.mui-ios .mui-navbar-left .mui-right {
+			opacity: 0;
+		}
+		
+		.mui-navbar .mui-btn-nav {
+			-webkit-transition: none;
+			transition: none;
+			-webkit-transition-duration: .0s;
+			transition-duration: .0s;
+		}
+		
+		.mui-navbar .mui-bar .mui-title {
+			display: inline-block;
+			width: auto;
+		}
+		
+		.mui-page-shadow {
+			position: absolute;
+			right: 100%;
+			top: 0;
+			width: 16px;
+			height: 100%;
+			z-index: -1;
+			content: '';
+		}
+		
+		.mui-page-shadow {
+			background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+			background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+		}
+		
+		.mui-navbar-inner.mui-transitioning,
+		.mui-navbar-inner .mui-transitioning {
+			-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+			transition: opacity 300ms ease, transform 300ms ease;
+		}
+		
+		.mui-page {
+			display: none;
+		}
+		
+		.mui-pages .mui-page {
+			display: block;
+		}
+		
+		.mui-page .mui-table-view:first-child {
+			margin-top: 15px;
+		}
+		
+		.mui-page .mui-table-view:last-child {
+			margin-bottom: 30px;
+		}
+		
+		.mui-table-view {
+			margin-top: 20px;
+		}
+		
+		.mui-table-view span.mui-pull-right {
+			color: #999;
+		}
+		
+		.mui-table-view-divider {
+			background-color: #efeff4;
+			font-size: 14px;
+		}
+		
+		.mui-table-view-divider:before,
+		.mui-table-view-divider:after {
+			height: 0;
+		}
+		
+		.head {
+			height: 40px;
+		}
+		
+		#head {
+			line-height: 40px;
+		}
+		
+		.head-img {
+			width: 40px;
+			height: 40px;
+		}
+		
+		#head-img1 {
+			position: absolute;
+			bottom: 10px;
+			right: 40px;
+			width: 40px;
+			height: 40px;
+		}
+		
+		.update {
+			font-style: normal;
+			color: #999999;
+			margin-right: -25px;
+			font-size: 15px
+		}
+		
+		.mui-fullscreen {
+			position: fixed;
+			z-index: 20;
+			background-color: #000;
+		}
+		
+		.mui-ios .mui-navbar .mui-bar .mui-title {
+			position: static;
+		}
+		
+		.mui-plus.mui-plus-stream .mui-stream-hidden {
+			display: none !important;
+		}
+		
+		.title-header-color {
+			background-color: #FF0000;
+			color: #FFFFFF;
+		}
+	</style>
+	<!--<link rel="stylesheet" type="text/css" href="../css/feedback.css" />-->
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="setting" class="mui-page">
+			<!--页面标题栏开始-->
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">会员中心</h1>
+			</div>
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" href="#account">
+									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="">
+									<div class="mui-media-body" id="accountinfo">
+										注册信息
+										<p class='mui-ellipsis'>激活信息</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell" id="profitTrend">
+								<a href="#topInfo" class="mui-navigate-right">资金池<i class="mui-pull-right update" id="remainMoney">正在更新</i></a>
+							</li>
+							<!--<li class="mui-table-view-cell" id="profitTrend">
+								<a href="#" class="mui-navigate-right" id="toProfitTrend">资金池总额<i class="mui-pull-right update" id="totalMoney" >正在更新</i></a>
+							</li>-->
+							<!--<li class="mui-table-view-cell">资金池总额：<i class="mui-pull-right update" style="padding-right: 50px;" id="totalMoney" >正在更新</i></li>-->
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell" id="payForMoney">
+								<a href="#privacy" class="mui-navigate-right">广告分润提现</a>
+							</li>
+							<li class="mui-table-view-cell" id="generalAction">
+								<a href="#recordInfo" class="mui-navigate-right">分润记录</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell" id="Protocal">
+								<a href="#" class="mui-navigate-right">瓜分宝协议</a>
+							</li>
+							<li class="mui-table-view-cell" id="userhelp">
+								<a href="#" class="mui-navigate-right">使用帮助</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#about" class="mui-navigate-right">关于瓜分宝 <i class="mui-pull-right update">V1.6.0</i></a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;" onclick="logout()">
+								<a id="exitsystem">退出登录</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+		<div id="account" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" style="color: #FFFFFF;">
+					<span class="mui-icon mui-icon-left-nav title-header-color"></span>会员中心
+				</button>
+				<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;margin-left: 0;">激活与注册</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="head" class="mui-navigate-right">头像
+									<span class="mui-pull-right head">
+									<img class="head-img mui-action-preview" id="head-img1" src=""/>
+								</span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>姓名<span class="mui-pull-right" id="registerName">(未注册)</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>手机号码<span class="mui-pull-right" id="registerMobile">(未注册)</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>支付宝账户<span class="mui-pull-right" id="registerPayInfo">(未注册)</span></a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a>激活日期<span class="mui-pull-right" id="activationDate">(未注册)</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>激活时间<span class="mui-pull-right" id="activationTime">(未注册)</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>卡有效期<span class="mui-pull-right" id="validDate">(未注册)</span></a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a>手机品牌<span class="mui-pull-right" id="deviceType">(未注册)</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>制造商<span class="mui-pull-right" id="vendor">(未注册)</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>UUID<span class="mui-pull-right" id="uuid">(未注册)</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		//提现信息
+		<div id="privacy" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left " style="color: #FFFFFF;">
+					<span class="mui-icon mui-icon-left-nav title-header-color"></span>会员中心
+				</button>
+				<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">广告分润提现</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-divider">当前广告费</li>
+							<li class="mui-table-view-cell">
+								可用总金额
+							</li>
+							<li class="mui-table-view-divider" id="validSum"></li>
+							<li class="mui-table-view-cell">
+								<a>可提现金额<span class="mui-pull-right" id="payMoney"></span></a>
+							</li>
+							<li class="mui-table-view-divider">提现规则：<br/>1、每周可提现一次；<br/>2、单次提现金额为<span id="onceLimit">100</span>元的整数倍，比如<span id="onceLimit2">100</span>,<span id="onceLimit3">200</span>,<span id="onceLimit5">500</span>等。系统自动为您计算好提现金额，无需您输入；
+								<br/>3、提现申请后，7个工作日内支付到注册时提供的支付宝账户。<br />4、当日分润不计算在可提现金额中</li>
+						</ul>
+
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;">
+								<a class="mui-btn-primary" style="color: white;" onclick="tixian()" id="payForMe">申请提现</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-divider">历史信息</li>
+							<li class="mui-table-view-cell">
+								广告费总金额
+							</li>
+							<li class="mui-table-view-divider" id="hisSum"></li>
+							<li class="mui-table-view-cell">
+								提现总金额
+							</li>
+							<li class="mui-table-view-divider" id="extractSum"></li>
+							<li class="mui-table-view-cell">
+								提现总次数
+							</li>
+							<li class="mui-table-view-divider" id="extractCount"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		//资金池信息
+		<div id="topInfo" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left " style="color: #FFFFFF;">
+					<span class="mui-icon mui-icon-left-nav title-header-color"></span>会员中心
+				</button>
+				<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">资金池信息</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-divider">资金池最高额度</li>
+							<li class="mui-table-view-cell">
+								<a>总金额<span class="mui-pull-right" id="toptotalMoney"></span></a>
+							</li>
+							<li class="mui-table-view-divider">资金池余度</li>
+							<li class="mui-table-view-cell">
+								<a>可分金额<span class="mui-pull-right" id="topremainMoney"></span></a>
+							</li>
+							<li class="mui-table-view-divider">已提分润额</li>
+							<li class="mui-table-view-cell">
+								<a>套现总额<span class="mui-pull-right" id="topaskMoney"></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		//分润信息
+		<div id="recordInfo" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left " style="color: #FFFFFF;">
+					<span class="mui-icon mui-icon-left-nav title-header-color"></span>会员中心
+				</button>
+				<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">分润记录信息</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-divider">今日记录</li>
+							<li class="mui-table-view-cell">
+								<a>今日分润额<span class="mui-pull-right" id="todayMoney"></span></a>
+							</li>
+							<!--<li class="mui-table-view-divider"></li>-->
+							<li class="mui-table-view-cell">
+								<a>今日浏览次数<span class="mui-pull-right" id="todayCount"></span></a>
+							</li>
+							<li class="mui-table-view-divider">历史记录</li>
+							<li class="mui-table-view-cell">
+								<a>分润总额<span class="mui-pull-right" id="historytotalMoney"></span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>分润总次数<span class="mui-pull-right" id="browseCount"></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="about" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" style="color: #FFFFFF;">
+					<span class="mui-icon mui-icon-left-nav title-header-color"></span>会员中心
+				</button>
+				<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">关于 瓜分宝</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="welcome" class="mui-navigate-right">欢迎页</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="share" class="mui-navigate-right">分享推荐</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell" id="feedback-btn">
+								<a href="#" class="mui-navigate-right">问题反馈</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li id="check_update" class="mui-table-view-cell mui-plus-visible">
+								<a id="update" class="mui-navigate-right">检查更新</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js "></script>
+		<script src="../js/mui.view.js "></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/util.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init({});
+			var viewApi = mui('#app').view({
+				defaultPage: '#setting'
+			});
+			//初始化单页的区域滚动
+			mui('.mui-scroll-wrapper').scroll();
+			var oldBack = mui.back;
+			mui.back = function() {
+				if(viewApi.canBack()) {
+					viewApi.back();
+				} else {
+					oldBack();
+				}
+			};
+
+			var shares = {};
+			mui.plusReady(function() {
+				mui.currentWebview.addEventListener("show", function() {
+					plus.nativeUI.closeWaiting();
+					console.log(JSON.stringify(plus.webview.getWebviewById('html/main.html')))
+					plus.webview.getWebviewById('html/main.html').hide()
+				});
+				plus.share.getServices(function(s) {
+					if(s && s.length > 0) {
+						for(var i = 0; i < s.length; i++) {
+							var t = s[i];
+							shares[t.id] = t;
+						}
+					}
+				}, function() {
+					console.log("获取分享服务列表失败");
+				});
+				plus.webview.currentWebview().addEventListener('show', function() {
+					getInfo()
+				})
+			})
+			
+			function getInfo() {
+				var mask = mui.createMask();
+				//向服务器发送扫描数据
+				//var posturl = "http://192.168.1.106:8080/appdata/register";
+				var posturl = "http://gfb.wotuijie.com/api/user-info";
+				console.log('Bearer ' + localStorage.getItem('token'))
+				console.log("posturl:" + posturl);
+				mui.ajax(posturl, {
+					dataType: 'JSON', //服务器返回json格式数据  
+					type: 'GET', //HTTP请求类型  
+					timeout: 20000, //超时时间设置为10秒；
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem('token'),
+						'Accept': 'application/json'
+					}, //;charset=UTF-8
+					beforeSend: function() {
+						console.log("正在注册验证中......");
+						plus.nativeUI.showWaiting("......", {
+							padlock: true,
+							loading: {
+								icon: "images/waiting.png"
+							}
+						});
+						mask.show(); //显示遮罩层  
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层  
+					},
+					success: function(data) {
+						mask.close(); //关闭遮罩层  
+						//服务器返回响应，根据响应结果，分析是否登录成功；   
+						console.log(data)
+						var dt = JSON.parse(data);
+						if(dt.message === 'success') {
+							document.querySelector('#registerName').innerText = dt.data.username
+							document.querySelector('#registerMobile').innerText = dt.data.mobile
+							document.querySelector('#registerPayInfo').innerText = dt.data.alipay_account
+							document.querySelector('#activationDate').innerText = dt.data.activation_date_at
+							document.querySelector('#activationTime').innerText = dt.data.activation_time_at
+							document.querySelector('#validDate').innerText = dt.data.expiration_at
+							document.querySelector('#deviceType').innerText = plus.device.model
+							document.querySelector('#vendor').innerText = plus.device.vendor
+							document.querySelector('#uuid').innerText = plus.device.uuid
+							document.querySelector('#toptotalMoney').innerText = dt.data.ad_fee
+							document.querySelector('#topremainMoney').innerText = dt.data.amount
+							document.querySelector('#remainMoney').innerText = dt.data.amount
+							document.querySelector('#topaskMoney').innerText = dt.data.withdraw
+							console.log(localStorage.getItem(dt.data.username))
+							if(localStorage.getItem(dt.data.username)) {
+								document.getElementById("head-img").src = localStorage.getItem(dt.data.username);
+								document.getElementById("head-img1").src = localStorage.getItem(dt.data.username);
+							}
+							
+							
+
+						} else {
+							mui.alert(dt.msg);
+							console.log(dt.msg);
+						}
+					},
+
+					error: function(xhr, type, errorThrown) {
+						console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层
+						mui.alert(JSON.parse(xhr.response).message);
+//						mui.toast('请先登录')
+					}
+				})
+				//向服务器发送扫描数据
+				//var posturl = "http://192.168.1.106:8080/appdata/register";
+				var posturl = "http://gfb.wotuijie.com/api/complex";
+				console.log('Bearer ' + localStorage.getItem('token'))
+				console.log("posturl:" + posturl);
+				mui.ajax(posturl, {
+					dataType: 'JSON', //服务器返回json格式数据  
+					type: 'GET', //HTTP请求类型  
+					timeout: 20000, //超时时间设置为10秒；
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem('token'),
+						'Accept': 'application/json'
+					}, //;charset=UTF-8
+					beforeSend: function() {
+						console.log("正在注册验证中......");
+						plus.nativeUI.showWaiting("......", {
+							padlock: true,
+							loading: {
+								icon: "images/waiting.png"
+							}
+						});
+						mask.show(); //显示遮罩层  
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层  
+					},
+					success: function(data) {
+						mask.close(); //关闭遮罩层  
+						//服务器返回响应，根据响应结果，分析是否登录成功；   
+						console.log(data)
+						var dt = JSON.parse(data);
+						if(dt.message === 'success') {
+							document.querySelector('#todayMoney').innerText = dt.data.today_amount
+							document.querySelector('#todayCount').innerText = dt.data.visits
+							document.querySelector('#historytotalMoney').innerText = dt.data.history_read_count
+							document.querySelector('#browseCount').innerText = dt.data.history_amount
+//							document.querySelector('#activationTime').innerText = dt.data.activation_time_at
+//							document.querySelector('#validDate').innerText = dt.data.expiration_at
+//							document.querySelector('#deviceType').innerText = plus.device.model
+//							document.querySelector('#vendor').innerText = plus.device.vendor
+//							document.querySelector('#uuid').innerText = plus.device.uuid
+//							document.querySelector('#toptotalMoney').innerText = dt.data.ad_fee
+//							document.querySelector('#topremainMoney').innerText = dt.data.amount
+//							document.querySelector('#topaskMoney').innerText = dt.data.withdraw
+//							document.querySelector('#validSum').innerText = dt.data.use_amount
+//							document.querySelector('#payMoney').innerText = dt.data.withdraw_amount
+							
+
+						} else {
+							mui.alert(dt.msg);
+							console.log(dt.msg);
+						}
+					},
+
+					error: function(xhr, type, errorThrown) {
+						console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层
+						mui.alert(JSON.parse(xhr.response).message);
+//						mui.toast('请先登录')
+					}
+				})
+				var posturl = "http://gfb.wotuijie.com/api/withdraw";
+				console.log('Bearer ' + localStorage.getItem('token'))
+				console.log("posturl:" + posturl);
+				mui.ajax(posturl, {
+					dataType: 'JSON', //服务器返回json格式数据  
+					type: 'GET', //HTTP请求类型  
+					timeout: 20000, //超时时间设置为10秒；
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem('token'),
+						'Accept': 'application/json'
+					}, //;charset=UTF-8
+					beforeSend: function() {
+						console.log("正在注册验证中......");
+						plus.nativeUI.showWaiting("......", {
+							padlock: true,
+							loading: {
+								icon: "images/waiting.png"
+							}
+						});
+						mask.show(); //显示遮罩层  
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层  
+					},
+					success: function(data) {
+						mask.close(); //关闭遮罩层  
+						//服务器返回响应，根据响应结果，分析是否登录成功；   
+						console.log(data)
+						var dt = JSON.parse(data);
+						if(dt.message === 'success') {
+							document.querySelector('#validSum').innerText = dt.data.use_amount
+							document.querySelector('#payMoney').innerText = dt.data.withdraw_amount
+							document.querySelector('#hisSum').innerText = dt.data.history_amount
+							document.querySelector('#extractSum').innerText = dt.data.withdraw_finished
+							document.querySelector('#extractCount').innerText = dt.data.withdraw_finished_count
+							
+
+						} else {
+							mui.alert(dt.msg);
+							console.log(dt.msg);
+						}
+					},
+
+					error: function(xhr, type, errorThrown) {
+						console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层
+						mui.alert(JSON.parse(xhr.response).message);
+//						mui.toast('请先登录')
+					}
+				})
+			}
+			
+			function tixian() {
+				console.log(document.querySelector("#payMoney").value)
+				if (document.querySelector("#payMoney").innerText <= 0) {
+					mui.toast('无可提现金额')
+					return
+				}
+				var mask = mui.createMask();
+				//向服务器发送扫描数据
+				//var posturl = "http://192.168.1.106:8080/appdata/register";
+				var posturl = "http://gfb.wotuijie.com/api/withdraw?withdraw=" + document.querySelector("#payMoney").innerText;
+				console.log('Bearer ' + localStorage.getItem('token'))
+				console.log("posturl:" + posturl);
+				mui.ajax(posturl, {
+					dataType: 'JSON', //服务器返回json格式数据  
+					type: 'GET', //HTTP请求类型  
+					timeout: 20000, //超时时间设置为10秒；
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem('token'),
+						'Accept': 'application/json'
+					}, //;charset=UTF-8
+					beforeSend: function() {
+						console.log("正在注册验证中......");
+						plus.nativeUI.showWaiting("......", {
+							padlock: true,
+							loading: {
+								icon: "images/waiting.png"
+							}
+						});
+						mask.show(); //显示遮罩层  
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层  
+					},
+					success: function(data) {
+						mask.close(); //关闭遮罩层  
+						//服务器返回响应，根据响应结果，分析是否登录成功；   
+						console.log(data)
+						var dt = JSON.parse(data);
+						if(dt.message === 'success') {
+							document.querySelector("#payMoney").innerText = 0
+							mui.toast('提现成功')
+						} else {
+							mui.alert(dt.msg);
+							console.log(dt.msg);
+						}
+					},
+
+					error: function(xhr, type, errorThrown) {
+						console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+						plus.nativeUI.closeWaiting();
+						mask.close(); //关闭遮罩层
+						mui.alert(JSON.parse(xhr.response).message);
+//						mui.toast('请先登录')
+					}
+				})
+			}
+
+			function logout() {
+				localStorage.removeItem('token')
+				localStorage.removeItem('registertime')
+				mui.toast('退出登录')
+				console.log(localStorage.getItem('token'))
+			}
+			document.getElementById("Protocal").addEventListener('tap', function() {
+				console.log("Protocal Open......");
+				clicked('gfbProtocol.html', true, true);
+
+			});
+			document.getElementById("userhelp").addEventListener('tap', function() {
+				console.log("feedback-btn Open......");
+				clicked('help.html', true, true);
+
+			});
+			document.getElementById("welcome").addEventListener('tap', function(e) {
+				//显示启动导航
+				mui.openWindow({
+					id: 'guide',
+					url: 'guide.html',
+					show: {
+						aniShow: 'fade-in',
+						duration: 500
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			//分享链接点击事件
+			document.getElementById("share").addEventListener('tap', function() {
+				var ids = [{
+						id: "weixin",
+						ex: "WXSceneSession"
+					}, {
+						id: "weixin",
+						ex: "WXSceneTimeline"
+					}, {
+						id: "sinaweibo"
+					}, {
+						id: "tencentweibo"
+					}, {
+						id: "qq"
+					}],
+					bts = [{
+						title: "发送给微信好友"
+					}, {
+						title: "分享到微信朋友圈"
+					}, {
+						title: "分享到新浪微博"
+					}, {
+						title: "分享到腾讯微博"
+					}, {
+						title: "分享到QQ"
+					}];
+				plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: bts
+				}, function(e) {
+					var i = e.index;
+					if(i > 0) {
+						var s_id = ids[i - 1].id;
+						var share = shares[s_id];
+						if(share) {
+							if(share.authenticated) {
+								shareMessage(share, ids[i - 1].ex);
+							} else {
+								share.authorize(function() {
+									shareMessage(share, ids[i - 1].ex);
+								}, function(e) {
+									console.log("认证授权失败：" + e.code + " - " + e.message);
+								});
+							}
+						} else {
+							mui.toast("无法获取分享服务，请向APP开发者反馈！");
+						}
+					}
+				});
+			});
+
+			function shareMessage(share, ex) {
+				var msg = {
+					extra: {
+						scene: ex
+					}
+				};
+				msg.href = "http://115.28.77.111/addevice.apk";
+				msg.title = "瓜分宝广告机，广告费瓜分神器";
+				msg.content = "我正在体验瓜分宝广告机，果然很不错，快速瓜分广告费！";
+				if(~share.id.indexOf('weibo')) {
+					msg.content += "；体验地址：http://192.168.0.1/";
+				}
+				msg.thumbs = ["_www/images/logo.png"];
+				msg.pictures = ['http://115.28.77.111/gfb/images/sharepicture.png'];
+				share.send(msg, function() {
+					console.log("分享到\"" + share.description + "\"成功！ ");
+				}, function(e) {
+					console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
+				});
+			}
+			//检查更新
+			document.getElementById("update").addEventListener('tap', function() {
+
+				console.log("update Open......");
+				clicked('upgrade.html', true, true);
+			});
+			//问题反馈
+		document.getElementById("feedback-btn").addEventListener('tap', function() {
+			if (!localStorage.getItem('token')) {
+				mui.toast('请先登录')
+				return
+			}
+			console.log("feedback-btn Open......");
+			clicked('feedback.html', true, true);
+
+		});
+		//使用帮助
+		document.getElementById("userhelp").addEventListener('tap', function() {
+			console.log("feedback-btn Open......");
+			clicked('help.html', true, true);
+
+		});
+		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+			if(mui.os.plus) {
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch(b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})
+			}
+
+		});
+		
+		function ua(s) {
+			console.log(document.querySelector('#registerName').innerText)
+			console.log(s)
+			localStorage.setItem(document.querySelector('#registerName').innerText, s)
+		}
+
+		function getImage() {
+			var c = plus.camera.getCamera();
+			c.captureImage(function(e) {
+				plus.io.resolveLocalFileSystemURL(e, function(entry) {
+					var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+					console.log(s);
+					document.getElementById("head-img").src = s;
+					document.getElementById("head-img1").src = s;
+					ua(s)
+					//变更大图预览的src
+					//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+					document.querySelector("#__mui-imageview__group .mui-slider-item img").src = s + "?version=" + new Date().getTime();;;
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(s) {
+				console.log("error" + s);
+			}, {
+				filename: "_doc/head.jpg"
+			})
+		}
+
+		function galleryImg() {
+			plus.gallery.pick(function(a) {
+				plus.io.resolveLocalFileSystemURL(a, function(entry) {
+					plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+						root.getFile("head.jpg", {}, function(file) {
+							//文件已存在
+							file.remove(function() {
+								console.log("file remove success");
+								entry.copyTo(root, 'head.jpg', function(e) {
+										var e = e.fullPath;
+										document.getElementById("head-img").src = e;
+										document.getElementById("head-img1").src = e;
+										ua(e)
+										//变更大图预览的src
+										//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+										document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e + "?version=" + new Date().getTime();;
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							}, function() {
+								console.log("delete image fail:" + e.message);
+							});
+						}, function() {
+							//文件不存在
+							entry.copyTo(root, 'head.jpg', function(e) {
+									var path = e.fullPath;
+									document.getElementById("head-img").src = path;
+									document.getElementById("head-img1").src = path;
+									ua(path)
+									//变更大图预览的src
+									//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+									document.querySelector("#__mui-imageview__group .mui-slider-item img").src = path;
+								},
+								function(e) {
+									console.log('copy image fail:' + e.message);
+								});
+						});
+					}, function(e) {
+						console.log("get _www folder fail");
+					})
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(a) {}, {
+				filter: "image"
+			})
+		};
+
+		function defaultImg() {
+			if(mui.os.plus) {
+				plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+					var s = entry.fullPath + "?version=" + new Date().getTime();
+					document.getElementById("head-img").src = s;
+					document.getElementById("head-img1").src = s;
+				}, function(e) {
+					document.getElementById("head-img").src = '../images/logo.png';
+					document.getElementById("head-img1").src = '../images/logo.png';
+				})
+			} else {
+				document.getElementById("head-img").src = '../images/logo.png';
+				document.getElementById("head-img1").src = '../images/logo.png';
+			}
+
+		}
+		document.getElementById("head-img1").addEventListener('tap', function(e) {
+			e.stopPropagation();
+		});
+		</script>
+	</body>
+
+</html>

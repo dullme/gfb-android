@@ -1,0 +1,619 @@
+{
+	"id": "H5EC38340",
+	"name": "\u74dc\u5206\u5b9d",
+	"version": {
+		"name": "v1.6.0",
+		"code": 44
+	},
+	"kernel": {
+		"version": "v1.6.0",
+		"code": "VCMqX3elGp4nINuoJ2utIounHO4wHOXvHOXl",
+		"kernel": "Y94kI8um"
+	},
+	"description": "\u74dc\u5206\u5b9d\u5e7f\u544a\u5206\u6da6\u673a",
+	"icons": {
+		"72": "icon.png"
+	},
+	"fullscreen": true,
+	"launch_path": "index.html",
+	"developer": {
+		"name": "yinzifeng2001@126.com",
+		"email": "yinzifeng2001@126.com",
+		"url": ""
+	},
+	"permissions": {
+		"Accelerometer": {
+			"description": "plus.accelerometer.*"
+		},
+		"Audio": {
+			"description": "plus.audio.*"
+		},
+		"Cache": {
+			"description": "plus.cache.*"
+		},
+		"Camera": {
+			"description": "plus.camera.*"
+		},
+		"Console": {
+			"description": "plus.console.*"
+		},
+		"Device": {
+			"description": "plus.device.*"
+		},
+		"Downloader": {
+			"description": "plus.downloader.*"
+		},
+		"Events": {
+			"description": "Events"
+		},
+		"File": {
+			"description": "plus.io.*"
+		},
+		"Gallery": {
+			"description": "plus.gallery.*"
+		},
+		"Geolocation": {
+			"description": "plus.geolocation.*"
+		},
+		"Invocation": {
+			"description": "plus.android.*"
+		},
+		"Orientation": {
+			"description": "plus.orientation.*"
+		},
+		"Proximity": {
+			"description": "plus.proximity.*"
+		},
+		"Storage": {
+			"description": "plus.storage.*"
+		},
+		"Uploader": {
+			"description": "plus.uploader.*"
+		},
+		"Runtime": {
+			"description": "plus.runtime.*"
+		},
+		"XMLHttpRequest": {
+			"description": "plus.net.*"
+		},
+		"Zip": {
+			"description": "plus.zip.*"
+		},
+		"Barcode": {
+			"description": "plus.barcode.*"
+		},
+		"Webview": {
+			"description": "plus.webview.*"
+		},
+		"NativeUI": {
+			"description": "plus.nativeUI.*"
+		},
+		"Navigator": {
+			"description": "plus.navigator.*"
+		},
+		"NativeObj": {
+			"description": "plus.nativeObj.*"
+		},
+		"OAuth": {
+			"description": "OAuth"
+		},
+		"Maps": {
+			"description": "Maps"
+		},
+
+
+		"Stream": {
+			"description": "plus.stream.*"
+		},
+		"Confusion": {
+			"description": "Resource confusion"
+		}
+	},
+	"plus": {
+		"distribute": {
+			"google": {
+				"permissions": [
+					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+					"<uses-permission android:name=\"android.permission.INTERNET\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+					"<uses-permission android:name=\"android.permission.CAMERA\"/>"
+				]
+			},
+			"icons": {
+				"android": {
+					"hdpi": "unpackage/res/icons/72x72.png",
+					"mdpi": "unpackage/res/icons/48x48.png",
+					"ldpi": "unpackage/res/icons/48x48.png",
+					"xhdpi": "unpackage/res/icons/96x96.png",
+					"xxhdpi": "unpackage/res/icons/144x144.png",
+					"xxxhdpi": "unpackage/res/icons/192x192.png"
+				},
+				"ios": {
+					"iphone": {
+						"app@2x": "unpackage/res/icons/120x120.png",
+						"app@3x": "unpackage/res/icons/180x180.png",
+						"settings@3x": "unpackage/res/icons/87x87.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"spotlight@3x": "unpackage/res/icons/120x120.png",
+						"notification@3x": "unpackage/res/icons/60x60.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"ipad": {
+						"app": "unpackage/res/icons/76x76.png",
+						"app@2x": "unpackage/res/icons/152x152.png",
+						"settings": "unpackage/res/icons/29x29.png",
+						"proapp@2x": "unpackage/res/icons/167x167.png",
+						"spotlight": "unpackage/res/icons/40x40.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"notification": "unpackage/res/icons/20x20.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"appstore": "C:/Users/wohai/Desktop/QQ截图20181010235216.png"
+				}
+			},
+			"splashscreen": {
+				"android": {
+					
+					
+					
+				}
+			}
+		},
+		"launchwebview": {
+			"bottom": "0px",
+			"background": "#fff",
+			"subNViews": [
+				{
+					"id": "AdDevicetabBar",
+					"styles": {
+						"bottom": "0px",
+						"left": "0",
+						"height": "50px",
+						"width": "100%",
+						"backgroundColor": "#fff"
+					},
+					"tags": [
+						{
+							"tag": "font",
+							"id": "indexIcon",
+							"text": "\ue500",
+							"position": {
+								"top": "4px",
+								"left": "0",
+								"width": "40%",
+								"height": "24px"
+							},
+							"textStyles": {
+								"fontSrc": "_www\/fonts\/mui.ttf",
+								"align": "center",
+								"size": "24px"
+							}
+						}, {
+							"tag": "font",
+							"id": "indexText",
+							"text": "\u9996\u9875",
+							"position": {
+								"top": "23px",
+								"left": "0",
+								"width": "40%",
+								"height": "24px"
+							},
+							"textStyles": {
+								"align": "center",
+								"size": "10px"
+							}
+						}, {
+							"tag": "font",
+							"id": "advertIcon",
+							"text": "\ue100",
+							"position": {
+								"top": "4px",
+								"left": "40%",
+								"width": "20%",
+								"height": "24px"
+							},
+							"textStyles": {
+								"fontSrc": "_www\/fonts\/mui.ttf",
+								"align": "center",
+								"size": "24px"
+							}
+						}, {
+							"tag": "font",
+							"id": "advertText",
+							"text": "\u6d4f\u89c8\u5e7f\u544a",
+							"position": {
+								"top": "24px",
+								"left": "40%",
+								"width": "20%",
+								"height": "24px"
+							},
+							"textStyles": {
+								"align": "center",
+								"size": "10px"
+							}
+						}, {
+							"tag": "font",
+							"id": "memberIcon",
+							"text": "\ue100",
+							"position": {
+								"top": "4px",
+								"left": "60%",
+								"width": "40%",
+								"height": "24px"
+							},
+							"textStyles": {
+								"fontSrc": "_www\/fonts\/mui.ttf",
+								"align": "center",
+								"size": "24px"
+							}
+						}, {
+							"tag": "font",
+							"id": "memberText",
+							"text": "\u4f1a\u5458\u4e2d\u5fc3",
+							"position": {
+								"top": "24px",
+								"left": "60%",
+								"width": "40%",
+								"height": "24px"
+							},
+							"textStyles": {
+								"align": "center",
+								"size": "10px"
+							}
+						}, {
+							"tag": "rect",
+							"id": "tabBorder",
+							"position": {
+								"top": "0",
+								"left": "0",
+								"width": "100%",
+								"height": "1px"
+							},
+							"rectStyles": {
+								"color": "#ccc"
+							}
+						}
+					]
+				}
+			]
+		},
+		"splashscreen": {
+			"autoclose": false,
+			"waiting": true,
+			"delay": "0"
+		},
+		"popGesture": "close",
+		"runmode": "normal",
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+		"adid": "123911090310",
+		"statusbar": []
+	},
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"html/main.html"
+				],
+				"refer": [
+					"html/setting.html",
+					"html/guide.html"
+				],
+				"priority": 0
+			},
+			"html/setting.html": {
+				"resources": [],
+				"refer": [
+					"html/guide.html",
+					"html/upgrade.html",
+					"html/gfbProtocol.html",
+					"html/help.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"images/register.gif",
+				"css/feedback.css",
+				"images/register3.gif",
+				"images/money2.gif",
+				"libs/tools-code.js",
+				"js/public.js",
+				"images/qrcode.gif",
+				"html/feedback.html",
+				"fonts/gfbiconfont.ttf",
+				"libs/echarts-all.js",
+				"images/logo60x60.png",
+				"images/working.gif",
+				"images/register2.gif",
+				"js/jquery-3.1.0.min.js",
+				"js/feedback-yzf.js",
+				"js/common.js",
+				"images/logo.png",
+				"css/common.css",
+				"js/mui.min.js",
+				"js/util.js",
+				"css/iconfont.css",
+				"fonts/iconfont.ttf",
+				"libs/echarts.min.js",
+				"js/mui.js",
+				"js/mui.view.js",
+				"images/money.gif",
+				"images/scantip.gif",
+				"images/waiting.png",
+				"fonts/mui.ttf",
+				"images/register4.gif",
+				"css/mui.css",
+				"js/immersed.js",
+				"html/barcode_scan.html",
+				"images/loading.gif",
+				"css/mui.min.css",
+				"images/scanning.gif",
+				"libs/echarts.js",
+				"js/feedback.js",
+				"images/qrcode2.gif"
+			]
+		},
+		"description": "瓜分宝广告分润机",
+		"icons": {
+			"72": "icon.png"
+		},
+		"fullscreen": true,
+		"launch_path": "index.html",
+		"developer": {
+			"name": "yinzifeng2001@126.com",
+			"email": "yinzifeng2001@126.com",
+			"url": ""
+		},
+		"permissions": {
+			"Accelerometer": {
+				"description": "plus.accelerometer.*"
+			},
+			"Audio": {
+				"description": "plus.audio.*"
+			},
+			"Cache": {
+				"description": "plus.cache.*"
+			},
+			"Camera": {
+				"description": "plus.camera.*"
+			},
+			"Console": {
+				"description": "plus.console.*"
+			},
+			"Device": {
+				"description": "plus.device.*"
+			},
+			"Downloader": {
+				"description": "plus.downloader.*"
+			},
+			"Events": {
+				"description": "Events"
+			},
+			"File": {
+				"description": "plus.io.*"
+			},
+			"Gallery": {
+				"description": "plus.gallery.*"
+			},
+			"Geolocation": {
+				"description": "plus.geolocation.*"
+			},
+			"Invocation": {
+				"description": "plus.android.*"
+			},
+			"Orientation": {
+				"description": "plus.orientation.*"
+			},
+			"Proximity": {
+				"description": "plus.proximity.*"
+			},
+			"Storage": {
+				"description": "plus.storage.*"
+			},
+			"Uploader": {
+				"description": "plus.uploader.*"
+			},
+			"Runtime": {
+				"description": "plus.runtime.*"
+			},
+			"XMLHttpRequest": {
+				"description": "plus.net.*"
+			},
+			"Zip": {
+				"description": "plus.zip.*"
+			},
+			"Barcode": {
+				"description": "plus.barcode.*"
+			},
+			"Webview": {
+				"description": "plus.webview.*"
+			},
+			"NativeUI": {
+				"description": "plus.nativeUI.*"
+			},
+			"Navigator": {
+				"description": "plus.navigator.*"
+			},
+			"NativeObj": {
+				"description": "plus.nativeObj.*"
+			},
+			"OAuth": {
+				"description": "OAuth"
+			},
+			"Maps": {
+				"description": "Maps"
+			},
+			"Contacts": {
+				"description": "Contacts"
+			},
+			"Messaging": {
+				"description": "Messaging"
+			},
+			"Stream": {
+				"description": "plus.stream.*"
+			},
+			"Confusion": {
+				"description": "Resource confusion"
+			},
+			"Share": {
+				"description": "plus.share.*"
+			}
+		},
+		"plus": {
+			"launchwebview": {
+				"bottom": "0px",
+				"background": "#fff",
+				"subNViews": [
+					{
+						"id": "AdDevicetabBar",
+						"styles": {
+							"bottom": "0px",
+							"left": "0",
+							"height": "50px",
+							"width": "100%",
+							"backgroundColor": "#fff"
+						},
+						"tags": [
+							{
+								"tag": "font",
+								"id": "indexIcon",
+								"text": "",
+								"position": {
+									"top": "4px",
+									"left": "0",
+									"width": "40%",
+									"height": "24px"
+								},
+								"textStyles": {
+									"fontSrc": "_www/fonts/mui.ttf",
+									"align": "center",
+									"size": "24px"
+								}
+							},
+							{
+								"tag": "font",
+								"id": "indexText",
+								"text": "首页",
+								"position": {
+									"top": "23px",
+									"left": "0",
+									"width": "40%",
+									"height": "24px"
+								},
+								"textStyles": {
+									"align": "center",
+									"size": "10px"
+								}
+							},
+							{
+								"tag": "font",
+								"id": "advertIcon",
+								"text": "",
+								"position": {
+									"top": "4px",
+									"left": "40%",
+									"width": "20%",
+									"height": "24px"
+								},
+								"textStyles": {
+									"fontSrc": "_www/fonts/mui.ttf",
+									"align": "center",
+									"size": "24px"
+								}
+							},
+							{
+								"tag": "font",
+								"id": "advertText",
+								"text": "浏览广告",
+								"position": {
+									"top": "24px",
+									"left": "40%",
+									"width": "20%",
+									"height": "24px"
+								},
+								"textStyles": {
+									"align": "center",
+									"size": "10px"
+								}
+							},
+							{
+								"tag": "font",
+								"id": "memberIcon",
+								"text": "",
+								"position": {
+									"top": "4px",
+									"left": "60%",
+									"width": "40%",
+									"height": "24px"
+								},
+								"textStyles": {
+									"fontSrc": "_www/fonts/mui.ttf",
+									"align": "center",
+									"size": "24px"
+								}
+							},
+							{
+								"tag": "font",
+								"id": "memberText",
+								"text": "会员中心",
+								"position": {
+									"top": "24px",
+									"left": "60%",
+									"width": "40%",
+									"height": "24px"
+								},
+								"textStyles": {
+									"align": "center",
+									"size": "10px"
+								}
+							},
+							{
+								"tag": "rect",
+								"id": "tabBorder",
+								"position": {
+									"top": "0",
+									"left": "0",
+									"width": "100%",
+									"height": "1px"
+								},
+								"rectStyles": {
+									"color": "#ccc"
+								}
+							}
+						]
+					}
+				]
+			},
+			"splashscreen": {
+				"autoclose": false,
+				"waiting": true,
+				"delay": "0"
+			},
+			"popGesture": "close",
+			"runmode": "normal",
+			"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw\u003d\u003d",
+			"adid": "120535140506",
+			"statusbar": []
+		}
+	},
+	"unpackage": []
+}

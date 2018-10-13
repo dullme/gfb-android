@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+		<style>
+			#close {
+				position: absolute;
+				width: 160px;
+				left: 50%;
+				margin-left: -80px;
+				bottom: 15%;
+				padding: 10px;
+				color: #fff;
+				border-color: #fff;
+			}
+			.item-logo {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			.item-logo a {
+				width: 100px;
+				height: 100px;
+				display: block;
+				border: 2px solid #FFFFFF;
+				border-color: rgba(255, 255, 255, 0.5);
+				text-align: center;
+				line-height: 200px;
+				border-radius: 50%;
+				font-size: 20px;
+				color: #fff;
+				position: absolute;
+				top: 5%;
+				left: 5%;
+				background-image: url(../images/logo60x60.png) ;
+				background-repeat:no-repeat; 
+				background-size:100% 100%;
+				-moz-background-size:100% 100%;
+				/*margin-left: -100px;*/
+			}
+			
+			.item-title {
+				position: absolute;
+				width: 300px;
+				height: 100px;
+				top: 50%;
+				margin-top: -50px;
+				text-align: ;
+				vertical-align:middle;
+				line-height: 200px;
+				font-size: 40px;
+				color: #fff;
+				top: 5%;
+				left: 40%;
+			}
+			.animate {
+				position: absolute;
+				left: 0;
+				bottom: 15%;
+				width: 100%;
+				color: #fff;
+				display: -moz-box;
+			}
+			.animate h2 {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			.animate li {
+				width: 90%;
+				height: 30px;
+				line-height: 30px;
+				list-style: none;
+				font-size: 16px;
+				text-align: left;
+				margin-left: 5%;
+			}
+			.animate li:nth-child(3) {
+				text-align: left;
+				float: left;
+			}
+			.animated {
+				-webkit-animation-duration: 1s;
+				-webkit-animation-play-state: paused;
+				-webkit-animation-fill-mode: both;
+			}
+			.guide-show .bounceInDown {
+				-webkit-animation-name: bounceInDown;
+				-webkit-animation-play-state: running;
+				-webkit-animation-delay: 0.5s;
+				display: block;
+			}
+			.guide-show .bounceInLeft {
+				-webkit-animation-name: bounceInLeft;
+				display: block;
+				-webkit-animation-play-state: running;
+			}
+			.guide-show .bounceInRight {
+				-webkit-animation-name: bounceInRight;
+				display: block;
+				-webkit-animation-play-state: running;
+				-webkit-animation-delay: 1s;
+			}
+			@-webkit-keyframes bounceInDown {
+				0%, 60%, 75%, 90%, 100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, -3000px, 0);
+					transform: translate3d(0, -3000px, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(0, 25px, 0);
+					transform: translate3d(0, 25px, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(0, -5px, 0);
+					transform: translate3d(0, -5px, 0);
+				}
+				90% {
+					-webkit-transform: translate3d(0, 3px, 0);
+					transform: translate3d(0, 3px, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+			@-webkit-keyframes bounceInLeft {
+				0%, 60%, 75%, 90%, 100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(-3000px, 0, 0);
+					transform: translate3d(-3000px, 0, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(25px, 0, 0);
+					transform: translate3d(25px, 0, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(-10px, 0, 0);
+					transform: translate3d(-10px, 0, 0);
+				}
+				90% {
+					-webkit-transform: translate3d(5px, 0, 0);
+					transform: translate3d(5px, 0, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+			@-webkit-keyframes bounceInRight {
+				0%, 60%, 75%, 90%, 100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(3000px, 0, 0);
+					transform: translate3d(3000px, 0, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(-25px, 0, 0);
+					transform: translate3d(-25px, 0, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(10px, 0, 0);
+					transform: translate3d(10px, 0, 0);
+				}
+				90% {
+					-webkit-transform: translate3d(-5px, 0, 0);
+					transform: translate3d(-5px, 0, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: black;">
+			<div class="mui-slider-group">
+				<!-- 第0张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-color: #FFFFFF">
+						<a href="#"></a><div class="item-title" style="color: #FF0000;font-size: 35px;">讲一个故事</div>
+						<div class="animate guide-show" style="color: #FF0000;">
+							<h2 class="animated bounceInDown">传说有一个"瓜分宝"</h2>
+							<h2 class="animated bounceInDown" style="font-size: 25px;">它能让您获得丰厚的广告费</h2>
+							<h2 class="animated bounceInDown" style="font-size: 25px;">是获得额外财富的一个大大大大大大大大神器</h2>
+						</div>
+					</div>
+				</div>
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-color: #FF0000">
+						<a href="#"></a><div class="item-title">瓜分宝</div>
+						<div id="tips-1" class="animate mui-hidden">
+							<h2 class="animated bounceInDown">等等，你说什么?</h2>
+							<h2 class="animated bounceInDown">我能瓜分广告费?</h2>
+							<h2 class="animated bounceInDown">还有神器?</h2>
+							<li class="animated bounceInLeft">带头大哥说：</li>
+							<li class="animated bounceInLeft"><span class="mui-icon gfb-iconfont gfb-icon-diyibu"></span>仅需一个瓜分宝激活码</li>
+							<li class="animated bounceInRight"><span class="mui-icon gfb-iconfont gfb-icon-dierbu"></span>三步操作，坐享广告费</li>
+						</div>
+					</div>
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-color: #FFFFFF;">
+						<a href="#"></a>
+						<div class="item-title" style="color: #FF0000;">
+							怎么干<span class="mui-icon gfb-iconfont gfb-icon-huaban" style="font-size: 40px;"></span>
+						</div>
+						<div id="tips-2" class="animate mui-hidden"  style="color: #FF0000;">
+							<h2 class="animated bounceInDown">购买一个瓜分宝账户</h2>
+							<h2 class="animated bounceInDown">购买一个瓜分宝账户</h2>
+							<h2 class="animated bounceInDown">购买一个瓜分宝账户</h2>
+							<h2 class="animated bounceInDown">重要的事情说三遍!!!</h2>
+							<li class="animated bounceInLeft"><span class="mui-icon gfb-iconfont gfb-icon-diyibu"></span>从合法渠道购买一张瓜分宝激活码</li>
+							<li class="animated bounceInLeft"><span class="mui-icon gfb-iconfont gfb-icon-dierbu"></span>首先，在系统首页中登录账号和密码激活</li>
+							<li class="animated bounceInRight"><span class="mui-icon gfb-iconfont gfb-icon-disanbu"></span>然后，注册您的账户信息</li>
+							<li class="animated bounceInRight"><span class="mui-icon gfb-iconfont gfb-icon-disibu"></span>最后，点击激活</li>
+							<li class="animated bounceInRight">是的，挣钱就这么简单</li>
+						</div>
+					</div>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-color: #FF0000;">
+						<a href="#"></a><div class="item-title" style="font-size: 35px;">鬼才相信你</div>
+						<div id="tips-3" class="animate mui-hidden">
+							<h2 class="animated bounceInDown">就这样不劳而获</h2>
+							<h2 class="animated bounceInDown">我能立刻瓜分广告费？</h2>
+							<h2 class="animated bounceInDown">至于你信不信，反正是我不信！！！</h2>
+							<li class="animated bounceInLeft">你得按带头大哥说的做：</li>
+							<li class="animated bounceInLeft"><span class="mui-icon gfb-iconfont gfb-icon-diyibu"></span>扫二维码和注册后，点击激活后</li>
+							<li class="animated bounceInRight"><span class="mui-icon gfb-iconfont gfb-icon-dierbu"></span>点开系统主菜单，即系统的<span class="mui-icon gfb-iconfont gfb-icon-M" ></span>页面</li>
+							<li class="animated bounceInRight"><span class="mui-icon gfb-iconfont gfb-icon-disanbu"></span>瓜分宝自动挖金矿，您就眼睁睁的看着账户里的钱越来越多！</li>
+						</div>
+					</div>
+				</div>
+				<!-- 第四张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-color: #FFFFFF;">
+						<a href="#"></a><div class="item-title" style="font-size: 26px;color: #FF0000;">我怎么拿到银子</div>
+						<div id="tips-4" class="animate mui-hidden" style="color: #FF0000;">
+							<h2 class="animated bounceInDown">带头大哥卖一下关子</h2>
+							<h2 class="animated bounceInDown">咳嗽6声，又敲3下黑板</h2>
+							<h2 class="animated bounceInDown">高声吆喝道：</h2>
+							<li class="animated bounceInLeft"><span class="mui-icon gfb-iconfont gfb-icon-diyibu"></span>麻烦您动动手，点击"会员中心"</li>
+							<li class="animated bounceInLeft"><span class="mui-icon gfb-iconfont gfb-icon-dierbu"></span>劳驾您使用"广告分润提现"进行申请</li>
+							<li class="animated bounceInRight"><span class="mui-icon gfb-iconfont gfb-icon-disanbu"></span>只要您抢的广告费达到提现条件，稳坐在家中，7个工作日内送到您的支付宝中。</li>
+						</div>
+					</div>
+				</div>
+				<!--第五张-->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-color: #FF0000;">
+						<a href="#"></a><div class="item-title" style="font-size: 40px;">咋样？</div>
+						<div id="tips-5" class="animate mui-hidden" style="margin-bottom: 100px;">
+							<h2 class="animated bounceInDown">心动不如行动</h2>
+							<h2 class="animated bounceInDown">
+								<span class="mui-icon gfb-iconfont gfb-icon-biaoqing-daxiao" style="font-size: 40px;border: 2px solid #FFFFFF;border-color: #FFFFFF;border-radius: 50%;" ></span></h2>
+							<li class="animated bounceInLeft">&nbsp;</li>
+						</div>
+						<div class="animate">
+							<button id='close' class="mui-btn mui-btn-warning mui-btn-outlined">立即体验</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.back = function() {};
+			mui.plusReady(function() {
+				if(mui.os.ios){
+					plus.navigator.setFullscreen(true);
+				}
+				plus.navigator.closeSplashscreen();
+			});
+			//立即体验按钮点击事件
+			document.getElementById("close").addEventListener('tap', function(event) {
+				plus.storage.setItem("lauchFlag", "true");
+				plus.navigator.setFullscreen(false);
+				plus.webview.currentWebview().close();
+			}, false);
+			//图片切换时，触发动画
+			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+			 	//注意slideNumber是从0开始的；
+			 	console.log("slideNumber="+event.detail.slideNumber);
+			 	var index = event.detail.slideNumber;
+			 	if(index==1||index==2||index==3||index==4||index==5){
+			 		var item = document.getElementById("tips-"+index);
+			 		if(item.classList.contains("mui-hidden")){
+			 			item.classList.remove("mui-hidden");
+			 			item.classList.add("guide-show");
+			 		}
+			 	}
+			});
+			
+		</script>
+	</body>
+
+</html>

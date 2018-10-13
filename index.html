@@ -1,0 +1,587 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				width: 100%;
+				background-color: #efeff4;
+				margin: auto;
+				padding: auto;
+				text-align: center;
+				margin-right: auto;
+			}
+			
+			div {
+				border-radius: 10px;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			ul li {
+				list-style: none;
+			}
+			
+			.imgimg {
+				width: 100%;
+				height: 200px;
+				text-align: center;
+				margin: 10px auto;
+				border-radius: 10px;
+				border: 1px solid #FF0000;
+			}
+			
+			.textdesc {
+				overflow: hidden;
+				float: center;
+				text-align: center;
+				width: 100%;
+				height: 20px;
+				margin-top: 20px;
+				color: #007AFF;
+			}
+			
+			.title-header-color {
+				background-color: #FF0000;
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<!--页面标题栏开始-->
+	<div class="mui-navbar-inner mui-bar mui-bar-nav">
+		<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">首页</h1>
+	</div>
+	<div id="div-scanbar" style="margin-top: 50px;">
+		<div style="background:url(images/scanning.gif) center;background-size:100% 100%; " class="imgimg" id="scanbar"></div>
+		<a class="textdesc" id="scanbar" onclick="second()">去登录</a>
+		<hr style="margin-top: 20px; height:1px;border:none;border-top:2px solid #666666;" />
+		<ul id="history" class="dlist" style="text-align:left;font-size: 10px;color: #222222;">
+			<li id="nohistory" class="ditem" onclick="onempty()">无历史记录 </li>
+		</ul>
+	</div>
+	<div id="second" class="mui-hidden">
+		<div class="mui-page-content " style="margin-top: 10px;text-align: left;padding:0;width:100%;height:100%;">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-input-group">
+					<li class="mui-table-view-divider" style="text-align: left;font-size:10px ;">卡号：</li>
+					<li class="mui-table-view-cell">
+						<input name="username" id="telvalue1" type="text" value="" style="font-size: 10pt;" class="mui-input-clear" placeholder="请输入您的卡号">
+					</li>
+
+					<li class="mui-table-view-divider" style="text-align: left;font-size: 10px;">密码：</li>
+					<li class="mui-table-view-cell">
+						<input name="password" id="accountvalue1" type="password" value="" class="mui-input-clear mui-input-password" style="font-size: 10pt;" placeholder="请输入您的密码">
+					</li>
+					<!--<li class="mui-table-view-divider" style="text-align: left;font-size: 10px;">确认密码：</li>
+					<li class="mui-table-view-cell">
+						<input name="r_password" id="accountvalue2" type="password" class="mui-input-clear mui-input-password" style="font-size: 10pt;" placeholder="请再次输入您的密码">
+					</li>-->
+				</ul>
+				<ul class="mui-table-view" style="top: 20px;" id="info">
+					<li class="mui-table-view-cell" style="text-align: center;" id="inforegister">
+						<a class="mui-btn-primary" style="color: white;" onclick="third()">&nbsp;&nbsp;登陆&nbsp;&nbsp;</a>
+					</li>
+					<li class="mui-table-view-cell" style="text-align: center;margin-top: 10px;" id="inforeset">
+						<a class="mui-btn-danger" style="color: white;" onclick="reset1()">&nbsp;&nbsp;重填&nbsp;&nbsp;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="third" class="mui-hidden">
+		<div class="mui-page-content " style="margin-top: 10px;text-align: left;padding:0;width:100%;height:100%;">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-input-group">
+					<li class="mui-table-view-divider" style="text-align: left;font-size:10px ;">紧急联系手机号码：</li>
+					<li class="mui-table-view-cell">
+						<input id="telvalue" id="telvalue" type="tel" style="font-size: 10pt;" class="mui-input-clear" placeholder="请填写11位手机号码">
+					</li>
+
+					<li class="mui-table-view-divider" style="text-align: left;font-size: 10px;">接收广告费的支付宝账户：</li>
+					<li class="mui-table-view-cell">
+						<input name="accountvalue" id="accountvalue" type="text" class="mui-input-clear" style="font-size: 10pt;" placeholder="可收款的支付宝账户">
+					</li>
+					<li class="mui-table-view-divider" style="text-align: left;font-size:10px ;">再输一次支付宝账户：</li>
+					<li class="mui-table-view-cell">
+						<input name="accountvaluex" id="accountvaluex" type="text" class="mui-input-clear" style="font-size: 10pt;" placeholder="可收款的支付宝账户">
+					</li>
+					<li class="mui-table-view-divider" style="text-align: left;font-size: 10px;">支付宝账户姓名：</li>
+					<li class="mui-table-view-cell">
+						<input name="accountname" id="accountname" type="text" class="mui-input-clear" style="font-size: 10pt;" placeholder="支付宝账户姓名">
+					</li>
+					<li class="mui-table-view-divider" style="font-size: 10pt;text-align: left;">重要提示：务必确保支付宝账户信息输入正确，一旦发生错误。您将无法提取广告费！！！</li>
+				</ul>
+				<ul class="mui-table-view" style="top: 20px;" id="info">
+					<li class="mui-table-view-cell" style="text-align: center;" id="inforegister">
+						<a class="mui-btn-primary" style="color: white;" onclick="forth()">&nbsp;&nbsp;提交&nbsp;&nbsp;</a>
+					</li>
+					<li class="mui-table-view-cell" style="text-align: center;margin-top: 10px;" id="inforeset">
+						<a class="mui-btn-danger" style="color: white;" onclick="reset2()">&nbsp;&nbsp;重填&nbsp;&nbsp;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="div-userlogin" class="mui-content mui-hidden">
+		<img id="userlogin" src="images/money2.gif" class="imgimg"></img>
+
+		<hr style="margin-top: 100px; height:1px;border:none;border-top:2px solid #666666;" />
+		<ul id="loginhistory" class="dlist" style="text-align:left;font-size: 10px;color: #222222;">
+			<li id="santime" class="ditem">无登录历史数据</li>
+			<li id="registertime" class="ditem"></li>
+			<li id="logintime" class="ditem"></li>
+		</ul>
+	</div>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script src="js/util.js"></script>
+		<script type="text/javascript">
+			mui.init()
+
+			function preload() {
+				if(localStorage.getItem('token')) {
+					document.querySelector("#div-scanbar").classList.add('mui-hidden')
+
+					document.querySelector("#second").classList.add('mui-hidden')
+
+					document.querySelector("#third").classList.add('mui-hidden')
+					document.querySelector("#div-userlogin").classList.remove('mui-hidden')
+				}
+				var self = plus.webview.currentWebview(),
+					leftPos = Math.ceil((window.innerWidth - 60) / 2); // 设置凸起大图标为水平居中
+
+				// 创建子webview窗口 并初始化
+				var aniShow = {};
+				util.initSubpage(aniShow);
+
+				var nview = plus.nativeObj.View.getViewById('AdDevicetabBar'),
+					activePage = plus.webview.currentWebview(),
+					targetPage,
+					subpages = util.options.subpages,
+					pageW = window.innerWidth,
+					currIndex = 0;
+
+				/**	
+				 * drawNativeIcon 绘制带边框的半圆，
+				 * 实现原理：
+				 *   id为bg的tag 创建带边框的圆
+				 *   id为bg2的tag 创建白色矩形遮住圆下半部分，只显示凸起带边框部分
+				 * 	 id为iconBg的红色背景图
+				 *   id为icon的字体图标
+				 *   注意创建先后顺序，创建越晚的层级越高
+				 */
+				var drawNativeIcon = util.drawNative('icon', {
+					bottom: '5px',
+					left: leftPos + 'px',
+					width: '60px',
+					height: '60px'
+				}, [{
+					tag: 'rect',
+					id: 'bg',
+					position: {
+						top: '1px',
+						left: '0px',
+						width: '100%',
+						height: '100%'
+					},
+					rectStyles: {
+						color: '#fff',
+						radius: '50%',
+						borderColor: '#ccc',
+						borderWidth: '1px'
+					}
+				}, {
+					tag: 'rect',
+					id: 'bg2',
+					position: {
+						bottom: '-0.5px',
+						left: '0px',
+						width: '100%',
+						height: '45px'
+					},
+					rectStyles: {
+						color: '#fff'
+					}
+				}, {
+					tag: 'rect',
+					id: 'iconBg',
+					position: {
+						top: '5px',
+						left: '5px',
+						width: '50px',
+						height: '50px'
+					},
+					rectStyles: {
+						color: '#ff0000',
+						radius: '50%'
+					}
+				}, {
+					tag: 'font',
+					id: 'icon',
+					text: '\ue600', //此为字体图标Unicode码'\e600'转换为'\ue600'
+					position: {
+						top: '0px',
+						left: '5px',
+						width: '50px',
+						height: '100%'
+					},
+					textStyles: {
+						fontSrc: '_www/fonts/iconfont.ttf',
+						align: 'center',
+						color: '#000',
+						size: '30px'
+					}
+				}]);
+				// append 到父webview中
+				self.append(drawNativeIcon);
+
+				//自定义监听图标点击事件
+				drawNativeIcon.addEventListener('click', function(e) {
+					// 判断是否需要切换颜色
+					targetPage = plus.webview.getWebviewById(subpages[0]);
+					if(targetPage == activePage) {
+						console.log("Money repeat");
+						return false;
+					}
+					// 重绘字体颜色
+					drawNativeIcon.drawText('\ue600', {}, {
+						fontSrc: '_www/fonts/iconfont.ttf',
+						align: 'center',
+						color: '#fff',
+						size: '30px'
+					}, 'icon');
+
+					//						//底部选项卡切换
+					util.toggleNview(1);
+					// 子页面切换						
+					util.changeSubpage(targetPage, activePage, aniShow);
+					//更新当前活跃的页面
+					activePage = targetPage;
+
+					return false;
+					throw "————————";
+				});
+				// 中间凸起图标绘制及监听点击完毕
+
+				/**
+				 * 根据判断view控件点击位置判断切换的tab
+				 */
+				nview.addEventListener('click', function(e) {
+					var clientX = e.clientX;
+
+					if(clientX > 0 && clientX <= parseInt(pageW * 0.4)) {
+						currIndex = 0;
+					} else if(clientX > parseInt(pageW * 0.4) && clientX <= parseInt(pageW * 0.6)) {
+						currIndex = 1;
+					} else if(clientX > parseInt(pageW * 0.6)) {
+						currIndex = 2;
+					}
+					//重置M颜色
+					if(currIndex != 1) {
+						drawNativeIcon.drawText('\ue600', {}, {
+							fontSrc: '_www/fonts/iconfont.ttf',
+							align: 'center',
+							color: '#000',
+							size: '30px'
+						}, 'icon');
+					}
+					console.log('currIndex:' + currIndex)
+					// 匹配对应tab窗口	
+					if(currIndex > 0) {
+						targetPage = plus.webview.getWebviewById(subpages[currIndex - 1]); //首页不在配置文件内，故必须-1
+					} else {
+						targetPage = plus.webview.currentWebview();
+					}
+					console.log(targetPage.id)
+
+					if(currIndex == 0) {
+						console.log('切换到首页了')
+						console.log(localStorage.getItem('token'))
+						if(!localStorage.getItem('token')) {
+							document.querySelector("#div-scanbar").classList.remove('mui-hidden')
+
+							document.querySelector("#second").classList.add('mui-hidden')
+
+							document.querySelector("#third").classList.add('mui-hidden')
+							document.querySelector("#div-userlogin").classList.add('mui-hidden')
+						}
+						console.log("other repeat");
+					}
+
+					//底部选项卡切换
+					util.toggleNview(currIndex);
+					// 子页面切换
+					util.changeSubpage(targetPage, activePage, aniShow);
+					//更新当前活跃的页面
+					activePage = targetPage;
+				});
+			}
+			
+			
+
+			var blist = 0;
+			mui.plusReady(function() {
+				mui.currentWebview.addEventListener("show", function() {
+					plus.nativeUI.closeWaiting();
+					console.log(JSON.stringify(plus.webview.getWebviewById('html/main.html')))
+					plus.webview.getWebviewById('html/main.html').hide()
+				});
+				//读取本地存储，检查是否为首次启动
+					var showGuide = plus.storage.getItem("lauchFlag");
+					plus.screen.lockOrientation("portrait-primary");
+					if(showGuide) {
+						preload()
+					} else {
+						//显示启动导航
+						mui.openWindow({
+							id: 'guide',
+							url: 'html/guide.html',
+							styles: {
+								popGesture: "none"
+							},
+							show: {
+								aniShow: 'none'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+						//延迟的原因：优先打开启动导航页面，避免资源争夺
+						setTimeout(function() {
+							//预加载
+							preload();
+						}, 2000);
+					}
+				
+				setTimeout(preload, 500)
+				setInterval(function() {
+					var d = new Date();
+					var h = d.getHours(),
+						m = d.getMinutes(),
+						s = d.getSeconds(),
+						ms = d.getMilliseconds();
+					if(h < 10) {
+						h = '0' + h;
+					}
+					if(m < 10) {
+						m = '0' + m;
+					}
+					if(s < 10) {
+						s = '0' + s;
+					}
+					if(ms < 10) {
+						ms = '00' + ms;
+					} else if(ms < 100) {
+						ms = '0' + ms;
+					}
+
+					var li = null,
+						hl = document.getElementById('history');
+					if(blist > 0) {
+						li = document.createElement('li');
+						li.className = 'ditem';
+						hl.insertBefore(li, hl.childNodes[0]);
+					} else {
+						li = document.getElementById('nohistory');
+					}
+					li.id = blist;
+					var html = h + ':' + m + ':' + s + '.' + ms + '    VIP客户浏览广告获得利润：+<font style="color:#FF0000">';
+					html += Math.round(Math.random() * 1000) / 10000;
+					html += '</font>';
+					li.innerHTML = html;
+					blist++;
+				}, 500)
+			})
+
+			function display() {
+				document.getElementById("santime").classList.add('mui-hidden')
+				li = document.getElementById('registertime');
+				var html = '在本机成功注册时间：<font style="color:#FF0000">';
+				html += localStorage.getItem("registertime");
+				html += '</font>';
+				li.innerHTML = html;
+
+				li = document.getElementById('logintime');
+				var html = '本机首次登录时间：<font style="color:#FF0000">';
+				html += localStorage.getItem("registertime");
+				html += '</font>';
+				li.innerHTML = html;
+			}
+
+			function second() {
+				document.getElementById('div-scanbar').classList.add('mui-hidden')
+				document.getElementById('second').classList.remove('mui-hidden')
+			}
+
+			function reset1() {
+				document.querySelector("#telvalue1").value = null
+				console.log(document.querySelector("#telvalue1").value)
+				document.querySelector("#accountvalue1").value = null
+				//				document.querySelector("#accountvalue2").value = null
+			}
+
+			function third() {
+				if(document.querySelector("#telvalue1").value.length === 0) {
+					mui.toast('卡号不能为空')
+				} else if(document.querySelector("#accountvalue1").value.length === 0) {
+					mui.toast('密码不能为空')
+				} else {
+					var mask = mui.createMask();
+					mui.getJSON("manifest.json", null, function(data) {
+						//向服务器发送扫描数据
+						//var posturl = "http://192.168.1.106:8080/appdata/register";
+						var posturl = "http://gfb.wotuijie.com/api/login";
+						console.log("posturl:" + posturl);
+						mui.ajax(posturl, {
+							data: {
+								"username": document.querySelector("#telvalue1").value,
+								"password": document.querySelector("#accountvalue1").value,
+							},
+							dataType: 'JSON', //服务器返回json格式数据  
+							type: 'POST', //HTTP请求类型  
+							timeout: 20000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded'
+							}, //;charset=UTF-8
+							beforeSend: function() {
+								console.log("正在注册验证中......");
+								plus.nativeUI.showWaiting("正在注册验证中......", {
+									padlock: true,
+									loading: {
+										icon: "images/waiting.png"
+									}
+								});
+								mask.show(); //显示遮罩层  
+							},
+							complete: function() {
+								plus.nativeUI.closeWaiting();
+								mask.close(); //关闭遮罩层  
+							},
+							success: function(data) {
+								mask.close(); //关闭遮罩层  
+								//服务器返回响应，根据响应结果，分析是否登录成功；   
+								console.log(data)
+								var dt = JSON.parse(data);
+								if(dt.message === 'success') {
+
+									mui.toast(dt.msg);
+
+									//初始化访问次数
+									if(!localStorage.getItem("registertime")) {
+										localStorage.setItem("registertime", new Date().toLocaleString())
+									}
+									if (localStorage.getItem("registertime")) {
+										display()
+									}
+									localStorage.setItem("token", dt.data.token);
+									document.getElementById('second').classList.add('mui-hidden')
+									if(dt.data.activated) {
+										document.getElementById('div-userlogin').classList.remove('mui-hidden')
+									} else {
+										document.getElementById('third').classList.remove('mui-hidden')
+									}
+
+								} else {
+									mui.alert(dt.msg);
+									console.log(dt.msg);
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								console.log(document.querySelector("#accountvalue1").value)
+								console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+								plus.nativeUI.closeWaiting();
+								mask.close(); //关闭遮罩层
+								mui.alert(JSON.parse(xhr.response).message);
+							}
+						})
+					});
+				}
+			}
+
+			function reset2() {
+				document.querySelector("#telvalue").value = null
+				document.querySelector("#accountvalue").value = null
+				document.querySelector("#accountvaluex").value = null
+				document.querySelector("#accountname").value = null
+			}
+
+			function forth() {
+				if(document.querySelector("#telvalue").value.length != 11 || isNaN(document.querySelector("#telvalue").value)) {
+					mui.toast('必须是11位的手机号')
+				} else if(document.querySelector("#accountvalue").value.length === 0) {
+					mui.toast('支付宝不能为空')
+				} else if(document.querySelector("#accountvaluex").value != document.querySelector("#accountvalue").value) {
+					mui.toast('两次输入的支付宝账号不一致')
+				} else if(document.querySelector("#accountname").value.length === 0) {
+					mui.toast('支付宝账户姓名不能为空')
+				} else {
+					var mask = mui.createMask();
+					mui.getJSON("manifest.json", null, function(data) {
+						//向服务器发送扫描数据
+						//var posturl = "http://192.168.1.106:8080/appdata/register";
+						var posturl = "http://gfb.wotuijie.com/api/user-info";
+						console.log("posturl:" + posturl);
+						mui.ajax(posturl, {
+							data: {
+								"mobile": document.querySelector("#telvalue").value,
+								"alipay_account": document.querySelector("#accountvalue").value,
+								"alipay_name": document.querySelector("#accountname").value,
+							},
+							dataType: 'JSON', //服务器返回json格式数据  
+							type: 'POST', //HTTP请求类型  
+							timeout: 20000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded',
+								'Authorization': 'Bearer ' + localStorage.getItem('token')
+							}, //;charset=UTF-8
+							beforeSend: function() {
+								console.log("正在注册验证中......");
+								plus.nativeUI.showWaiting("正在注册验证中......", {
+									padlock: true,
+									loading: {
+										icon: "images/waiting.png"
+									}
+								});
+								mask.show(); //显示遮罩层  
+							},
+							complete: function() {
+								plus.nativeUI.closeWaiting();
+								mask.close(); //关闭遮罩层  
+							},
+							success: function(data) {
+								mask.close(); //关闭遮罩层  
+								//服务器返回响应，根据响应结果，分析是否登录成功；   
+								console.log(data)
+								var dt = JSON.parse(data);
+								if(dt.message === 'success') {
+
+									document.getElementById('third').classList.add('mui-hidden')
+									document.getElementById('div-userlogin').classList.remove('mui-hidden')
+
+								} else {
+									mui.alert(dt.msg);
+									console.log(dt.msg);
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								console.log(document.querySelector("#accountvalue1").value)
+								console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+								plus.nativeUI.closeWaiting();
+								mask.close(); //关闭遮罩层
+								mui.alert(JSON.parse(xhr.response).message);
+							}
+						})
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

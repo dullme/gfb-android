@@ -1,0 +1,21 @@
+{
+  "index.html": {
+    "resources": [
+      "html/main.html"
+    ],
+    "refer": [
+      "html/main.html",
+      "html/setting.html",
+      "html/guide.html"
+    ]
+  },
+  "html/setting.html": {
+    "refer": [
+      "html/guide.html",
+      "html/upgrade.html",
+      "html/gfbProtocol.html",
+      "html/help.html"
+    ],
+    "resources": []
+  }
+}

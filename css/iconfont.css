@@ -1,0 +1,41 @@
+
+@font-face {font-family: "gfb-iconfont";
+  src: url('../fonts/gfbiconfont.ttf?t=1529113753543') format('truetype');/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.gfb-iconfont {
+  font-family:"gfb-iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gfb-icon-dierbu:before { content: "\e678"; }
+
+.gfb-icon-disanbu:before { content: "\e679"; }
+
+.gfb-icon-disibu:before { content: "\e67a"; }
+
+.gfb-icon-diyibu:before { content: "\e67b"; }
+
+.gfb-icon-yiwen:before { content: "\e606"; }
+
+.gfb-icon-biaoqing-daxiao:before { content: "\e605"; }
+
+.gfb-icon-M:before { content: "\e603"; }
+
+.gfb-icon-xinxinchanpin:before { content: "\e602"; }
+
+.gfb-icon-confirm-green:before { content: "\e610"; }
+
+.gfb-icon-queding:before { content: "\e601"; }
+
+.gfb-icon-M1:before { content: "\e642"; }
+
+.gfb-icon-yiwen1:before { content: "\e641"; }
+
+.gfb-icon-huaban:before { content: "\e61a"; }
+
+.gfb-icon-logox:before { content: "\e604"; }
+

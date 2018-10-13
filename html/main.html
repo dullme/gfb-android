@@ -174,7 +174,7 @@
 					        	if(AdT == null){
 					        		console.log('开始执行循环')
 									loopLoadAd();//立刻执行  moneyview
-									AdT = setInterval(loopLoadAd,1000*dt.data.time);//循环加载
+									AdT = setInterval(loopLoadAd,1000*dt.data.time + 1);//循环加载
 								}
 					        }else{
 					            mui.alert(dt.message);  

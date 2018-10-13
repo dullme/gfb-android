@@ -46,7 +46,7 @@
 			
 			.adimg {
 				width: 100%;
-				height: 350px;
+				height: 300px;
 				max-height: 90%;
 				text-align: center;
 				border-radius: 10px;
@@ -79,13 +79,17 @@
 			}
 			
 			.notice {
+				border-radius: 0;
 				color: #FF0000;
 				margin-top: 130px;
 				font-size: 18px;
-				padding: 20px;
 				text-indent: 6em;
 				position: relative;
 				z-index: 99;
+				background-color: #efeff4;
+			}
+			.notice_s {
+				padding: 30px;
 			}
 		</style>
 	</head>
@@ -96,13 +100,13 @@
 			<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">广告中心</h1>
 		</div>
 		<!--页面内容开始-->
-		<div class="mui-content" style="width: 100%;text-align: center;">
+		<div class="mui-content" style="width: 100%;text-align: center;overflow: hidden;">
 			<div id="div-loading" class="animated bounceInDown imgimg"></div>
 			<img id="img-show" class="animated bounceInDown mui-hidden adimg"></div>
 		<!--<div class="flex-wrap">-->
 		<div id="div-logo" class="mui-hidden logoimg"></div>
-		<div class="notice"></div>
 		</div>
+		<div class="notice"><div class="notice_s"></div></div>
 		<script src="../libs/tools-code.js"></script>
 		<script>
 			var bRunTime = false,
@@ -363,7 +367,7 @@ plus.nativeUI.closeWaiting();
 					error: function(xhr, type, errorThrown) {
 						plus.nativeUI.closeWaiting();
 						mui.alert(JSON.parse(xhr.response).message);
-						clearInterval(AdT)
+//						clearInterval(AdT)
 						//				        mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试'); 
 						//停止展示
 						document.getElementById("div-loading").classList.remove("mui-hidden");

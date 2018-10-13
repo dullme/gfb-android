@@ -289,7 +289,7 @@
 							console.log(pltime)
 
 plus.nativeUI.closeWaiting();
-							customWaiting("加载广告资源", moneytime);
+							customWaiting("加载广告资源", moneytime + pltime);
 							//2、适配IP
 							mui.later(function() {
 								if(bRunTime) {
@@ -305,7 +305,7 @@ plus.nativeUI.closeWaiting();
 									}
 									customWaiting("适配系统IP，准备分润", pltime);
 								}
-							}, 1000 * pltime);
+							}, 1000 * pltime + moneytime * 1000);
 							//3、开始分润
 							mui.later(function() {
 								if(bRunTime) {
@@ -317,7 +317,7 @@ plus.nativeUI.closeWaiting();
 									}
 									customWaiting("请求分润", pltime);
 								}
-							}, 1000 * pltime * 2);
+							}, 1000 * pltime * 2 + moneytime * 1000);
 							//4、获得广告收益
 							mui.later(function() {
 								if(bRunTime) {
@@ -329,7 +329,7 @@ plus.nativeUI.closeWaiting();
 									}
 									customFontWaiting("协商获得广告收益：+" + realData.last_amount, pltime);
 								}
-							}, 1000 * (pltime * 3));
+							}, 1000 * (pltime * 3) + moneytime * 1000);
 							//5、保存分润结果
 							mui.later(function() {
 								if(bRunTime) {
@@ -345,7 +345,7 @@ plus.nativeUI.closeWaiting();
 									strProfits = parseFloat(strProfits) + parseFloat(realData.last_amount);
 									localStorage.setItem("AdDevice-profits", strProfits);
 								}
-							}, 1000 * (pltime * 4));
+							}, 1000 * (pltime * 4) + moneytime * 1000);
 							mui.later(function() {
 								console.log('结束了')
 								//等待下一次开始
@@ -353,8 +353,8 @@ plus.nativeUI.closeWaiting();
 								document.getElementById("img-show").classList.add("mui-hidden");
 								document.getElementById("div-logo").classList.add("mui-hidden");
 								document.getElementById("img-show").src = null
-								customWaiting("加载广告资源", moneytime);
-							}, 1000 * (pltime * 5));
+//								customWaiting("加载广告资源", moneytime);
+							}, 1000 * (pltime * 5) + moneytime * 1000);
 						} else {
 							mui.alert(dt.message);
 							console.log(dt.message);

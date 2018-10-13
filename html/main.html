@@ -10,7 +10,10 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/util.js"></script>
+		<script src="../js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery.liMarquee.js" type="text/javascript" charset="utf-8"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/liMarquee.css"/>
 		<style>
 			html,
 			body {
@@ -69,6 +72,13 @@
 				background-color: #FF0000;	
 				color: #FFFFFF;			
 			}		
+			.notice {
+				color: #FF0000;
+				margin-top: 120px;
+				font-size: 18px;
+				padding: 20px;
+				text-indent: 6em;
+			}
 		</style>
 	</head>
 
@@ -83,6 +93,7 @@
 			<img id="img-show" class="animated bounceInDown mui-hidden adimg"></div>
 			<!--<div class="flex-wrap">-->
 			<div id="div-logo" class="mui-hidden logoimg"></div>
+			<div class="notice"></div>
 		</div>
 		<script src="../libs/tools-code.js"></script> 
 		<script>
@@ -130,7 +141,7 @@
 				});
 				mui.currentWebview.addEventListener("hide",function(){
 					bMain = false
-					//clearInterval(AdT);
+					clearInterval(AdT);
 					bRunTime = false;//停止分润
 					document.getElementById("div-loading").classList.add("mui-hidden");
 					document.getElementById("img-show").classList.remove("mui-hidden");
@@ -168,6 +179,10 @@
 					        var dt = eval('('+ data +')'); //包含了总体播放时间
 					        console.log(dt.data.status)
 					        if(dt.data.status){
+					        	$('.notice').html(dt.data.text)
+					        	$('.notice').liMarquee({
+					        		hoverstop: false
+					        	})
 					        	if(!bRunTime ){
 									bRunTime = true;//开始分润标记
 								}

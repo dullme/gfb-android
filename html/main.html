@@ -13,115 +13,126 @@
 		<script src="../js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/jquery.liMarquee.js" type="text/javascript" charset="utf-8"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../css/liMarquee.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/liMarquee.css" />
 		<style>
 			html,
 			body {
 				width: 100%;
 				background-color: #efeff4;
-				margin:auto;
-				padding:auto;
-				text-align:center;
-				margin-right:auto;
+				margin: auto;
+				padding: auto;
+				text-align: center;
+				margin-right: auto;
 			}
 			
-			div
-			{
+			div {
 				border-radius: 10px;
-				text-align:center;
-				margin-left:auto;
-				margin-right:auto;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;
 			}
-			.imgimg{
-				width:100%;
-				height:300px;
+			
+			.imgimg {
+				width: 100%;
+				height: 300px;
 				max-height: 90%;
 				text-align: center;
 				border-radius: 10px;
-				border:0;
+				border: 0;
 				margin-top: 8px;
-				background:url(../images/loading.gif) center;
-				background-size:100% 100%; 
+				background: url(../images/loading.gif) center;
+				background-size: 100% 100%;
 			}
 			
-			.adimg{
-				width:100%;
-				height:350px;
+			.adimg {
+				width: 100%;
+				height: 350px;
 				max-height: 90%;
 				text-align: center;
 				border-radius: 10px;
-				border:0;
+				border: 0;
 				margin-top: 8px;
-				background-size:100% 100%; 
+				background-size: 100% 100%;
 			}
-			.logoimg{
+			
+			.logoimg {
 				position: absolute;
-				background:url(../images/logo60x60.png) center;
-				width:60px;
-				height:60px;
+				background: url(../images/logo60x60.png) center;
+				width: 60px;
+				height: 60px;
 				text-align: center;
 				left: 85%;
-				margin-top:50px;				
+				margin-top: 50px;
 				-webkit-transform: translateX(-50%) translateY(-50%);
 				-moz-transform: translateX(-50%) translateY(-50%);
 				-ms-transform: translateX(-50%) translateY(-50%);
 				transform: translateX(-50%) translateY(-50%);
-			}	
+			}
 			
-			.title-header-color{
-				background-color: #FF0000;	
-				color: #FFFFFF;			
-			}		
+			.title-header-color {
+				background-color: #FF0000;
+				color: #FFFFFF;
+			}
+			
+			.mui-hidden {
+				display: none;
+			}
+			
 			.notice {
 				color: #FF0000;
-				margin-top: 120px;
+				margin-top: 130px;
 				font-size: 18px;
 				padding: 20px;
 				text-indent: 6em;
+				position: relative;
+				z-index: 99;
 			}
 		</style>
 	</head>
 
-	<body >
+	<body>
 		<!--页面标题栏开始-->
 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
 			<h1 class="mui-center mui-title title-header-color" style="left:0;width: 100%;">广告中心</h1>
 		</div>
 		<!--页面内容开始-->
-		<div class="mui-content" style="width: 100%;text-align: center;" >	
+		<div class="mui-content" style="width: 100%;text-align: center;">
 			<div id="div-loading" class="animated bounceInDown imgimg"></div>
 			<img id="img-show" class="animated bounceInDown mui-hidden adimg"></div>
-			<!--<div class="flex-wrap">-->
-			<div id="div-logo" class="mui-hidden logoimg"></div>
-			<div class="notice"></div>
+		<!--<div class="flex-wrap">-->
+		<div id="div-logo" class="mui-hidden logoimg"></div>
+		<div class="notice"></div>
 		</div>
-		<script src="../libs/tools-code.js"></script> 
+		<script src="../libs/tools-code.js"></script>
 		<script>
-			var bRunTime = false,bMain = false,
-				AdT = null,sendData,registerQrCode,registerTel,registerAccount;
+			var bRunTime = false,
+				bMain = false,
+				AdT = null,
+				sendData, registerQrCode, registerTel, registerAccount;
 			mui.init({
 				swipeBack: false
 			});
-			
+
 			mui.plusReady(function() {
-				plus.device.setWakelock(true);//一直处于唤醒状态
-				
+				plus.device.setWakelock(true); //一直处于唤醒状态
+
 				/**
 				本窗口显示时，再播放广告
 				*/
-				mui.currentWebview.addEventListener("show",function(){
+				mui.currentWebview.addEventListener("show", function() {
 					bMain = true;
 					//准备显示界面
 					document.getElementById("div-loading").classList.remove("mui-hidden");
 					document.getElementById("img-show").classList.add("mui-hidden");
 					document.getElementById("div-logo").classList.add("mui-hidden");
-					
+					document.getElementById("img-show").src
+
 					//看是否激活、注册和登录
-					if (!localStorage.getItem('token')) {//没有激活，注册，登录
+					if(!localStorage.getItem('token')) { //没有激活，注册，登录
 						customFontWaiting("请您务必首先到首页中激活、注册和登录，才能快速领取广告费！", 10);
-						return ;
+						return;
 					}
-					
+
 					//判断当前网络情况
 					//plus.networkinfo.CONNECTION_UNKNOW = "未知";状态码：0 
 					//plus.networkinfo.CONNECTION_NONE = "无网络链接"; 状态码：1
@@ -130,374 +141,412 @@
 					//plus.networkinfo.CONNECTION_CELL2G = "蜂窝移动2G网络"; 状态码：4
 					//plus.networkinfo.CONNECTION_CELL3G = "蜂窝移动3G网络"; 状态码：5
 					//plus.networkinfo.CONNECTION_CELL4G = "蜂窝移动4G网络"; 状态码：6
-					if(plus.networkinfo.getCurrentType()<3){// 3为状态码，wifi状态码是3
-		                mui.toast("无法连接互联网，瓜分宝无法完成您的全部请求操作......");
-		                return;
-		            }else if(plus.networkinfo.getCurrentType() !=3){
-		            	mui.toast("正在使用蜂窝移动网络,瓜分宝会造成非包月移动客户会产生流量费！");
-		            }
+					if(plus.networkinfo.getCurrentType() < 3) { // 3为状态码，wifi状态码是3
+						mui.toast("无法连接互联网，瓜分宝无法完成您的全部请求操作......");
+						return;
+					} else if(plus.networkinfo.getCurrentType() != 3) {
+						mui.toast("正在使用蜂窝移动网络,瓜分宝会造成非包月移动客户会产生流量费！");
+					}
 					//开始分润
 					startMoney();
 				});
-				mui.currentWebview.addEventListener("hide",function(){
+				mui.currentWebview.addEventListener("hide", function() {
 					bMain = false
 					clearInterval(AdT);
-					bRunTime = false;//停止分润
+					bRunTime = false; //停止分润
 					document.getElementById("div-loading").classList.add("mui-hidden");
 					document.getElementById("img-show").classList.remove("mui-hidden");
 					document.getElementById("div-logo").classList.remove("mui-hidden");
-					var str = JSON.parse( localStorage.getItem("AdDevice-system"));
-					
-					plus.nativeUI.closeWaiting(); 
-					
-				
+					document.getElementById("img-show").src = null
+					var str = JSON.parse(localStorage.getItem("AdDevice-system"));
+					AdT = null
+
+					plus.nativeUI.closeWaiting();
+
 				});
-				
+
 			});
 			//启动浏览
-			function startMoney(){
+			function startMoney() {
 				//组织body
-				 
+
 				//获取发送参数  scanTime
-				mui.getJSON("../manifest.json",null,function(data){
+				mui.getJSON("../manifest.json", null, function(data) {
 					sendData = data;
 					//获取是否可以浏览广告 readCount
 					//var posturl = "http://192.168.1.106:8080/appdata/adtime";
 					var posturl = 'http://gfb.wotuijie.com/api/can-see';
-					console.log("posturl:"+posturl);
-					mui.ajax(posturl,{
+					console.log("posturl:" + posturl);
+					mui.ajax(posturl, {
 						dataType: 'JSON', //服务器返回json格式数据  adtime
-				        type: 'GET', //HTTP请求类型  
-				        timeout: 20000, //超时时间设置为10秒；
-				        headers: {
-						'Authorization': 'Bearer ' + localStorage.getItem('token'),
-						'Accept': 'application/json'
-					}, //;charset=UTF-8
-					    success: function(data) {
-					    	console.log("adtime返回："+data);
-					        //服务器返回响应，根据响应结果，分析是否登录成功；   
-					        var dt = eval('('+ data +')'); //包含了总体播放时间
-					        console.log(dt.data.status)
-					        if(dt.data.status){
-					        	$('.notice').html(dt.data.text)
-					        	$('.notice').liMarquee({
-					        		hoverstop: false
-					        	})
-					        	if(!bRunTime ){
-									bRunTime = true;//开始分润标记
+						type: 'GET', //HTTP请求类型  
+						timeout: 20000, //超时时间设置为10秒；
+						headers: {
+							'Authorization': 'Bearer ' + localStorage.getItem('token'),
+							'Accept': 'application/json'
+						}, //;charset=UTF-8
+						success: function(data) {
+							console.log("adtime返回：" + data);
+							//服务器返回响应，根据响应结果，分析是否登录成功；   
+							var dt = eval('(' + data + ')'); //包含了总体播放时间
+							console.log(dt.data.status)
+							if(dt.data.status) {
+								$('.notice').html(dt.data.text)
+								$('.notice').liMarquee({
+									hoverstop: false
+								})
+								console.log('-----------------------------')
+								if(!bRunTime) {
+									bRunTime = true; //开始分润标记
 								}
-					        	if(AdT == null){
-					        		console.log('开始执行循环')
-									loopLoadAd();//立刻执行  moneyview
-									AdT = setInterval(loopLoadAd,1000*dt.data.time + 1);//循环加载
+								console.log('ADT:' + AdT)
+								if(AdT == null) {
+									console.log('开始执行循环')
+									loopLoadAd(); //立刻执行  moneyview
+									AdT = setInterval(loopLoadAd, 1000 * dt.data.time + 1); //循环加载
 								}
-					        }else{
-					            mui.alert(dt.message);  
-					            console.log(dt.message);
-					        }  
-					    },  
-					    error: function(xhr, type, errorThrown) { 
-					    	console.log(xhr.toString()+"==========="+type+",****\nerrorThrown="+errorThrown+"\nposturl="+posturl);
-					        mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试'); 
-					    }  
+							} else {
+								mui.alert(dt.message);
+								console.log(dt.message);
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+							//							mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试');
+						}
 					})
 				});
 			}
 			//循环函数
 			function loopLoadAd() {
-				if(!bRunTime){
+				if(!bRunTime) {
 					console.log('bRunTime是false了')
-					return ;
-				}
-				//客户记次
-				var countx = localStorage.getItem("AdDevice-readCount") ;
-				if( !isNaN(countx)){
-					if(countx>10000){ countx=1;}
-					countx = parseInt(countx) + 1;
-					localStorage.setItem("AdDevice-readCount",countx);
-				}else{
-					
-					localStorage.setItem("AdDevice-readCount",1);
-					countx =1;
-				}
-				
-//				var sendstr= getFeeIdentity();
-//				if(sendstr ==''){
-//					mui.toast("仅对注册用户有效！");
-//					return;
-//				} 
-//				var b64 = new Base64();
-//				var posturl = b64.decode(sendData.kernel.code)+"appdata/adcontext";
-	console.log('准备请求广告了')
-				var posturl = 'http://gfb.wotuijie.com/api/image'
-				mui.ajax(posturl,{
-//					data:{"version":sendData.kernel.version,"kernel":b64.encode(sendData.kernel.kernel),
-//							"reading":countx,"body":b64.encode(sendstr)},
-					dataType: 'JSON', //服务器返回json格式数据  
-			        type: 'GET', //HTTP请求类型  
-			        timeout: 10000, //超时时间设置为10秒；
-			        headers: {
-							'Authorization': 'Bearer ' + localStorage.getItem('token'),
-							'Accept': 'application/json'
-						},//;charset=UTF-8
-					beforeSend: function() {
-						plus.nativeUI.showWaiting("正在索取广告资源......",{padlock:true,loading:{icon:"../images/waiting.png"}});
-				    },  
-				    complete: function() {  
-				        plus.nativeUI.closeWaiting();  
-				    },  
-				    success: function(data) {
-				        //服务器返回响应，根据响应结果，分析是否登录成功；   
-				        console.log('data:' + data)
-				        var dt = eval('('+ data +')');
-				        if(dt.message){  
-				            //mui.toast(dt.msg); 
-				            var realData = dt.data;
-				            var pltime = parseInt(realData.time / 5); 
-				            pltime = pltime < 1?1:pltime;
-				            var moneytime = realData.time % 5;
-				            //1、加载 
-							document.getElementById("div-loading").classList.add("mui-hidden");
-							document.getElementById("img-show").classList.remove("mui-hidden");
-							document.getElementById("div-logo").classList.remove("mui-hidden");	
-							
-		          			document.getElementById("img-show").src = dt.data.url;
-		          			customWaiting("加载广告资源",pltime);
-			    			//2、适配IP
-			    			mui.later(function(){	
-			    				if(bRunTime){
-			    					if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden"))
-			    					{
-			    						document.getElementById("div-loading").classList.add("mui-hidden");
-										document.getElementById("img-show").classList.remove("mui-hidden");
-										document.getElementById("div-logo").classList.remove("mui-hidden");	
-			    					}
-			    					customWaiting("适配系统IP，准备分润",pltime);
-			    				}
-			    			},1000*pltime);
-			    			//3、开始分润
-			    			mui.later(function(){
-			          			if(bRunTime){
-			    					if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden"))
-			    					{
-			    						document.getElementById("div-loading").classList.add("mui-hidden");
-										document.getElementById("img-show").classList.remove("mui-hidden");
-										document.getElementById("div-logo").classList.remove("mui-hidden");	
-			    					}
-			    					customWaiting("请求分润",pltime+moneytime);
-			          			}
-			    			},1000*pltime*2);
-			    			//4、获得广告收益
-			    			mui.later(function(){
-			          			if(bRunTime){
-			    					if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden"))
-			    					{
-			    						document.getElementById("div-loading").classList.add("mui-hidden");
-										document.getElementById("img-show").classList.remove("mui-hidden");
-										document.getElementById("div-logo").classList.remove("mui-hidden");	
-			    					}
-			    					customFontWaiting("协商获得广告收益：+" + realData.last_amount,pltime);
-			          			}
-			    			},1000*(pltime*3+moneytime));
-			    			//5、保存分润结果
-			    			mui.later(function(){
-			          			if(bRunTime){
-			    					if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden"))
-			    					{
-			    						document.getElementById("div-loading").classList.add("mui-hidden");
-										document.getElementById("img-show").classList.remove("mui-hidden");
-										document.getElementById("div-logo").classList.remove("mui-hidden");
-			    					}
-			          				customWaiting("正在保存广告收益+" + realData.last_amount,pltime);//long
-				          			var strProfits = localStorage.getItem("AdDevice-profits");
-				          			strProfits = isNaN(strProfits)?0.0:strProfits;
-				          			strProfits = parseFloat(strProfits) + parseFloat(realData.last_amount);
-				          			localStorage.setItem("AdDevice-profits",strProfits);
-				          		}
-			    			},1000*(pltime*4+moneytime));
-			    			//6等待
-		          			mui.later(function(){
-		          				//等待下一次开始
-				    			document.getElementById("div-loading").classList.remove("mui-hidden");
-								document.getElementById("img-show").classList.add("mui-hidden");
-								document.getElementById("div-logo").classList.add("mui-hidden");
-		          			},1000*(pltime*5+moneytime));
-				        }else{  
-				            mui.alert(dt.message);  
-				            console.log(dt.message);
-				        }  
-				    },  
-				    error: function(xhr, type, errorThrown) { 
-				        plus.nativeUI.closeWaiting(); 
-				        mui.alert(JSON.parse(xhr.response).message);
-				        clearInterval(AdT)
-//				        mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试'); 
-				        //停止展示
-				        document.getElementById("div-loading").classList.remove("mui-hidden");
-						document.getElementById("img-show").classList.add("mui-hidden");
-						document.getElementById("div-logo").classList.add("mui-hidden");
-				    }  
-				})
-			}
-			
-			document.addEventListener("pause", function () {
-			    console.log("应用从前台切换到后台");
-			    var dest = localStorage.getItem("AdDevice-system") || '';
-				if(dest ==''){
 					return;
 				}
-				var str = JSON.parse(dest );
-			    //获取发送参数  scanTime
-				mui.getJSON("../manifest.json",null,function(data){
+				//客户记次
+				var countx = localStorage.getItem("AdDevice-readCount");
+				if(!isNaN(countx)) {
+					if(countx > 10000) {
+						countx = 1;
+					}
+					countx = parseInt(countx) + 1;
+					localStorage.setItem("AdDevice-readCount", countx);
+				} else {
+
+					localStorage.setItem("AdDevice-readCount", 1);
+					countx = 1;
+				}
+
+				//				var sendstr= getFeeIdentity();
+				//				if(sendstr ==''){
+				//					mui.toast("仅对注册用户有效！");
+				//					return;
+				//				} 
+				//				var b64 = new Base64();
+				//				var posturl = b64.decode(sendData.kernel.code)+"appdata/adcontext";
+				console.log('准备请求广告了')
+				var posturl = 'http://gfb.wotuijie.com/api/image'
+				mui.ajax(posturl, {
+					//					data:{"version":sendData.kernel.version,"kernel":b64.encode(sendData.kernel.kernel),
+					//							"reading":countx,"body":b64.encode(sendstr)},
+					dataType: 'JSON', //服务器返回json格式数据  
+					type: 'GET', //HTTP请求类型  
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem('token'),
+						'Accept': 'application/json'
+					}, //;charset=UTF-8
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("正在索取广告资源......", {
+							padlock: true,
+							loading: {
+								icon: "../images/waiting.png"
+							}
+						});
+					},
+					complete: function() {
+//						plus.nativeUI.closeWaiting();
+					},
+					success: function(data) {
+						//服务器返回响应，根据响应结果，分析是否登录成功；   
+						console.log('data:' + data)
+						var dt = eval('(' + data + ')');
+						if(dt.message) {
+							//mui.toast(dt.msg); 
+							var realData = dt.data;
+							var pltime = parseInt(realData.time / 5);
+							pltime = pltime < 1 ? 1 : pltime;
+							var moneytime = realData.time % 5;
+							//1、加载 
+							//							$('#div-loading').addClass('mui-hidden')
+							//							$('#img-show').removeClass('mui-hidden')
+							//							$('#div-logo').removeClass('mui-hidden')
+							
+							console.log(document.getElementById("div-loading").classList)
+							console.log(document.getElementById("img-show").classList)
+							console.log(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden"))
+							console.log(dt.data.url)
+							console.log(pltime)
+
+plus.nativeUI.closeWaiting();
+							customWaiting("加载广告资源", moneytime);
+							//2、适配IP
+							mui.later(function() {
+								if(bRunTime) {
+									//									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+									if(1) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+							document.getElementById("img-show").classList.remove("mui-hidden");
+							document.getElementById("div-logo").classList.remove("mui-hidden");
+							document.getElementById("img-show").src = dt.data.url;
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customWaiting("适配系统IP，准备分润", pltime);
+								}
+							}, 1000 * pltime);
+							//3、开始分润
+							mui.later(function() {
+								if(bRunTime) {
+									//									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+									if(1) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customWaiting("请求分润", pltime);
+								}
+							}, 1000 * pltime * 2);
+							//4、获得广告收益
+							mui.later(function() {
+								if(bRunTime) {
+									//									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+									if(1) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customFontWaiting("协商获得广告收益：+" + realData.last_amount, pltime);
+								}
+							}, 1000 * (pltime * 3));
+							//5、保存分润结果
+							mui.later(function() {
+								if(bRunTime) {
+									//									if(document.getElementById("img-show").classList.hasOwnProperty("mui-hidden")) {
+									if(1) {
+										document.getElementById("div-loading").classList.add("mui-hidden");
+										document.getElementById("img-show").classList.remove("mui-hidden");
+										document.getElementById("div-logo").classList.remove("mui-hidden");
+									}
+									customWaiting("正在保存广告收益+" + realData.last_amount, pltime); //long
+									var strProfits = localStorage.getItem("AdDevice-profits");
+									strProfits = isNaN(strProfits) ? 0.0 : strProfits;
+									strProfits = parseFloat(strProfits) + parseFloat(realData.last_amount);
+									localStorage.setItem("AdDevice-profits", strProfits);
+								}
+							}, 1000 * (pltime * 4));
+							mui.later(function() {
+								console.log('结束了')
+								//等待下一次开始
+								document.getElementById("div-loading").classList.remove("mui-hidden");
+								document.getElementById("img-show").classList.add("mui-hidden");
+								document.getElementById("div-logo").classList.add("mui-hidden");
+								document.getElementById("img-show").src = null
+								customWaiting("加载广告资源", moneytime);
+							}, 1000 * (pltime * 5));
+						} else {
+							mui.alert(dt.message);
+							console.log(dt.message);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						plus.nativeUI.closeWaiting();
+						mui.alert(JSON.parse(xhr.response).message);
+						clearInterval(AdT)
+						//				        mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试'); 
+						//停止展示
+						document.getElementById("div-loading").classList.remove("mui-hidden");
+						document.getElementById("img-show").classList.add("mui-hidden");
+						document.getElementById("div-logo").classList.add("mui-hidden");
+						document.getElementById("img-show").src = null
+					}
+				})
+			}
+
+			document.addEventListener("pause", function() {
+				console.log("应用从前台切换到后台");
+				bRunTime = false; //停止分润
+				plus.nativeUI.closeWaiting();
+				clearInterval(AdT);
+				AdT = null;
+				return
+				var dest = localStorage.getItem("AdDevice-system") || '';
+				if(dest == '') {
+					return;
+				}
+				var str = JSON.parse(dest);
+				//获取发送参数  scanTime
+				mui.getJSON("../manifest.json", null, function(data) {
 					sendData = data;
-				    var b64 = new Base64();
-				    var sendstr= getFeeIdentity();
-					if(sendstr ==''){
+					var b64 = new Base64();
+					var sendstr = getFeeIdentity();
+					if(sendstr == '') {
 						return;
-					} 
-					
+					}
+
 					//var posturl = "http://192.168.1.106:8080/appdata/serviceparam";
-					var posturl = b64.decode(sendData.kernel.code)+"appdata/serviceparam";
-					mui.ajax(posturl,{
-						data:{"version":sendData.kernel.version,"kernel":b64.encode(sendData.kernel.kernel),"body":b64.encode(sendstr)},
+					var posturl = b64.decode(sendData.kernel.code) + "appdata/serviceparam";
+					mui.ajax(posturl, {
+						data: {
+							"version": sendData.kernel.version,
+							"kernel": b64.encode(sendData.kernel.kernel),
+							"body": b64.encode(sendstr)
+						},
 						dataType: 'JSON', //服务器返回json格式数据  
-				        type: 'POST', //HTTP请求类型  
-				        timeout: 10000, //超时时间设置为10秒；
-				        header:{'Content-Type': 'application/json'},//;charset=UTF-8
-					    success: function(data) {
-					    	console.log("pause："+data.toString());
-					        //服务器返回响应，根据响应结果，分析是否登录成功；   
-					        var dt = eval('('+ data +')');
-					        console.log("pause："+dt.data);
-					        if(dt.data == 0){  
-					            bRunTime = false;//停止分润
-							    plus.nativeUI.closeWaiting();  
-							    clearInterval(AdT);
-							    AdT = null;
-					        } 
-					    },  
-					    error: function(xhr, type, errorThrown) { 
-					        clearInterval(AdT);
+						type: 'POST', //HTTP请求类型  
+						timeout: 10000, //超时时间设置为10秒；
+						header: {
+							'Content-Type': 'application/json'
+						}, //;charset=UTF-8
+						success: function(data) {
+							console.log("pause：" + data.toString());
+							//服务器返回响应，根据响应结果，分析是否登录成功；   
+							var dt = eval('(' + data + ')');
+							console.log("pause：" + dt.data);
+							if(dt.data == 0) {
+								bRunTime = false; //停止分润
+								plus.nativeUI.closeWaiting();
+								clearInterval(AdT);
+								AdT = null;
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							clearInterval(AdT);
 							AdT = null;
-					    }  
+						}
 					})
 				});
 			}, false);
-			document.addEventListener("resume", function () {
-			    console.log("应用从后台切换到前台");
-			    var dest = localStorage.getItem("AdDevice-system") || '';
-				if(dest ==''){
-					return;
-				}
-				var str = JSON.parse(dest );
-			    //mui.toast('程序在前台运行');
-			    mui.getJSON("../manifest.json",null,function(data){
+			document.addEventListener("resume", function() {
+				console.log("应用从后台切换到前台");
+				//mui.toast('程序在前台运行');
+				mui.getJSON("../manifest.json", null, function(data) {
 					sendData = data;
-				    var b64 = new Base64();
-				    //组织body
-					registerQrCode = str.QRCode;
-					var reg = localStorage.getItem("AdDevice-register")||'';
-					if(reg ==''){
-						return;
-					}
-					var register = JSON.parse(reg);
-					registerTel = register.regtel;
-					registerAccount = register.regaccount;
-					
-					//var posturl = "http://192.168.1.106:8080/appdata/serviceparam";
-					var posturl = b64.decode(sendData.kernel.code)+"appdata/serviceparam";
-					var sendstr = '{"qrtime":"'+ new Date().getTime() +'","QRCode":"'+ registerQrCode +'",'
-							+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
-							+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '",'
-							+ '"registerMobile":"' + registerTel + '","registerPayInfo":"' + registerAccount + '"}';
-					console.log(posturl+sendstr);
-					mui.ajax(posturl,{
-						data:{"version":sendData.kernel.version,"kernel":b64.encode(sendData.kernel.kernel),"body":b64.encode(sendstr)},
+					var posturl = 'http://gfb.wotuijie.com/api/can-see';
+
+					mui.ajax(posturl, {
 						dataType: 'JSON', //服务器返回json格式数据  
-				        type: 'POST', //HTTP请求类型  
-				        timeout: 10000, //超时时间设置为10秒；
-				        header:{'Content-Type': 'application/json'},//;charset=UTF-8
-					    success: function(data) {
-					    	
-					        //服务器返回响应，根据响应结果，分析是否登录成功；   
-					        var dt = eval('('+ data +')');
-					        console.log("pause："+dt.data);
-					        if(dt.data == 1){  
-					        	if(!bRunTime && bMain){
-							    	startMoney();
-							    }
-					        } 
-					    } 
+						type: 'GET', //HTTP请求类型  
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Authorization': 'Bearer ' + localStorage.getItem('token'),
+							'Accept': 'application/json'
+						}, //;charset=UTF-8
+						success: function(data) {
+
+							//服务器返回响应，根据响应结果，分析是否登录成功；   
+							var dt = eval('(' + data + ')');
+							console.log("pause：" + dt.data);
+							if(!bRunTime && bMain) {
+								startMoney();
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(xhr.toString() + "===========" + type + ",****\nerrorThrown=" + errorThrown + "\nposturl=" + posturl);
+							//							mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试');
+							clearInterval(AdT)
+							AdT = null
+							//				        mui.toast('现在请求广告资源的用户太多，挤爆服务器，请稍后再试'); 
+							//停止展示
+							document.getElementById("div-loading").classList.remove("mui-hidden");
+							document.getElementById("img-show").classList.add("mui-hidden");
+							document.getElementById("div-logo").classList.add("mui-hidden");
+							document.getElementById("img-show").src
+						}
 					})
 				});
-			    
+
 			}, false);
 
 			//获得注册身份信息
-			function getIdentity(){
+			function getIdentity() {
 				//向服务器发送扫描数据
 				var dest = localStorage.getItem("AdDevice-system") || '';
-				if(dest ==''){
+				if(dest == '') {
 					return '';
-				}else{
-					var str = JSON.parse(dest );
-					return '{"qrtime":"' + new Date().getTime() +'","QRCode":"'+str.QRCode+'",'
-						+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
-						+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '"}';
+				} else {
+					var str = JSON.parse(dest);
+					return '{"qrtime":"' + new Date().getTime() + '","QRCode":"' + str.QRCode + '",' +
+						'"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor + '",' +
+						'"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '"}';
 				}
-			} 
-			
+			}
+
 			//获得注册身份信息
-			function getFeeIdentity(){
+			function getFeeIdentity() {
 				//向服务器发送扫描数据
 				var register = JSON.parse(localStorage.getItem("AdDevice-register"));
 				var dest = localStorage.getItem("AdDevice-system") || '';
-				if(dest ==''){
+				if(dest == '') {
 					return '';
-				}else{
-					var str = JSON.parse(dest );
-					return '{"qrtime":"' + new Date().getTime() +'","QRCode":"'+str.QRCode+'",'
-						+ '"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor +'",'
-						+ '"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '",'
-						+ '"registerMobile":"' + registerTel + '","registerPayInfo":"' + registerAccount + '"}';
+				} else {
+					var str = JSON.parse(dest);
+					return '{"qrtime":"' + new Date().getTime() + '","QRCode":"' + str.QRCode + '",' +
+						'"deviceType":"' + plus.device.model + '","vendor":"' + plus.device.vendor + '",' +
+						'"IMEI":"' + plus.device.imei + '","UUID":"' + plus.device.uuid + '",' +
+						'"registerMobile":"' + registerTel + '","registerPayInfo":"' + registerAccount + '"}';
 				}
-			} 
-			
-			//等待中
-			function customWaiting(context,waiting){
-				//mui.toast(context);
-				//var w=plus.nativeUI.showWaiting("正在登录中，请等待...\n5", {padlock:true,loading:{icon:"images/waiting.png"}});
-				var w=plus.nativeUI.showWaiting(context+"，请等待...\n"+waiting, {modal:false,padlock:true,loading:{icon:"/images/waiting.png"}});
-				w.onclose=function(){
-					clearInterval(t);
-				}
-				var n=waiting;
-				var t=setInterval(function(){
-					n--;
-					w.setTitle(context+"，请等待...\n"+n);
-					if(n<=0){
-						w.close();
-						clearInterval(t);
-					}
-				},1000);
-			}
-			//大字体等待
-			function customFontWaiting(context,waiting){
-				var w=plus.nativeUI.showWaiting(context+"\n"+waiting, {modal:false,padlock:true,loading:{icon:"/images/waiting.png"},color:"#FF0000",size:"16px"});
-				w.onclose=function(){
-					clearInterval(t);
-				}
-				var n=waiting;
-				var t=setInterval(function(){
-					n--;
-					w.setTitle(context+"\n"+n);
-					if(n<=0){
-						w.close();
-						clearInterval(t);
-					}
-				},1000);
 			}
 
+			//等待中
+			function customWaiting(context, waiting) {
+				//mui.toast(context);
+				//var w=plus.nativeUI.showWaiting("正在登录中，请等待...\n5", {padlock:true,loading:{icon:"images/waiting.png"}});
+				var w = plus.nativeUI.showWaiting(context + "，请等待...\n" + waiting, {
+					modal: false,
+					padlock: true,
+					loading: {
+						icon: "/images/waiting.png"
+					}
+				});
+				w.onclose = function() {
+					clearInterval(t);
+				}
+				var n = waiting;
+				var t = setInterval(function() {
+					n--;
+					w.setTitle(context + "，请等待...\n" + n);
+					if(n <= 0) {
+						w.close();
+						clearInterval(t);
+					}
+				}, 1000);
+			}
+			//大字体等待
+			function customFontWaiting(context, waiting) {
+				var w = plus.nativeUI.showWaiting(context + "\n" + waiting, {
+					modal: false,
+					padlock: true,
+					loading: {
+						icon: "/images/waiting.png"
+					},
+					color: "#FF0000",
+					size: "16px"
+				});
+				w.onclose = function() {
+					clearInterval(t);
+				}
+				var n = waiting;
+				var t = setInterval(function() {
+					n--;
+					w.setTitle(context + "\n" + n);
+					if(n <= 0) {
+						w.close();
+						clearInterval(t);
+					}
+				}, 1000);
+			}
 		</script>
 	</body>
 

@@ -14,7 +14,8 @@
       "html/guide.html",
       "html/upgrade.html",
       "html/gfbProtocol.html",
-      "html/help.html"
+      "html/help.html",
+      "html/feedback.html"
     ],
     "resources": []
   }

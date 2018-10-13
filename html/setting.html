@@ -751,7 +751,11 @@
 						console.log(data)
 						var dt = JSON.parse(data);
 						if(dt.message === 'success') {
-							document.querySelector("#payMoney").innerText = 0
+							document.querySelector('#validSum').innerText = dt.data.use_amount
+							document.querySelector('#payMoney').innerText = dt.data.withdraw_amount
+							document.querySelector('#hisSum').innerText = dt.data.history_amount
+							document.querySelector('#extractSum').innerText = dt.data.withdraw_finished
+							document.querySelector('#extractCount').innerText = dt.data.withdraw_finished_count
 							mui.toast('提现成功')
 						} else {
 							mui.alert(dt.msg);

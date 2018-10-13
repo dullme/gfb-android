@@ -324,7 +324,8 @@
 					"html/guide.html",
 					"html/upgrade.html",
 					"html/gfbProtocol.html",
-					"html/help.html"
+					"html/help.html",
+					"html/feedback.html"
 				],
 				"priority": 0
 			}
@@ -338,7 +339,6 @@
 				"libs/tools-code.js",
 				"js/public.js",
 				"images/qrcode.gif",
-				"html/feedback.html",
 				"fonts/gfbiconfont.ttf",
 				"libs/echarts-all.js",
 				"images/logo60x60.png",

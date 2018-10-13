@@ -328,7 +328,9 @@
 
 			var blist = 0;
 			mui.plusReady(function() {
+				display()
 				mui.currentWebview.addEventListener("show", function() {
+					display()
 					plus.nativeUI.closeWaiting();
 					console.log(JSON.stringify(plus.webview.getWebviewById('html/main.html')))
 					plus.webview.getWebviewById('html/main.html').hide()

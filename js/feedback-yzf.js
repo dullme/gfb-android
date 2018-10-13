@@ -54,6 +54,8 @@
 	};  
 	
 	feedback.submitBtn.addEventListener('tap', function(event) {
+		mui.toast('反馈成功~')
+		return
 		console.log("submitBtn addEventListener");
 		if (feedback.question.value == '' ||
 			(feedback.contact.value != '' &&

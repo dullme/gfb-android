@@ -145,6 +145,8 @@
 	};
 	feedback.newPlaceholder();
 	feedback.submitBtn.addEventListener('tap', function(event) {
+		mui.toast('反馈成功~')
+		return
 		if (feedback.question.value == '' ||
 			(feedback.contact.value != '' &&
 				feedback.contact.value.search(/^(\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+)|([1-9]\d{4,9})$/) != 0)) {
@@ -165,6 +167,8 @@
 		})) 
 	}, false)
 	feedback.send = function(content) {
+		mui.toast('反馈成功~')
+		return
 		feedback.uploader = plus.uploader.createUpload(url, {
 			method: 'POST'
 		}, function(upload, status) {

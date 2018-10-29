@@ -166,7 +166,7 @@
 						"notification": "unpackage/res/icons/20x20.png",
 						"notification@2x": "unpackage/res/icons/40x40.png"
 					},
-					"appstore": "C:/Users/wohai/Desktop/QQ截图20181010235216.png"
+					"appstore": "unpackage/res/icons/1024x1024.png"
 				}
 			},
 			"splashscreen": {

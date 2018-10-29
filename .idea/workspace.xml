@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa7b4208-17f9-449b-a9fd-fe8daaae511d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/html/setting.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/setting.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +15,7 @@
     <session id="841984487">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -46,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/setting.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="359" column="66" selection-start-line="359" selection-start-column="66" selection-end-line="359" selection-end-column="66" />
+            <state relative-caret-position="446">
+              <caret line="358" column="115" selection-start-line="358" selection-start-column="115" selection-end-line="359" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -71,11 +72,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="470" />
-    <option name="y" value="67" />
-    <option name="width" value="1135" />
-    <option name="height" value="910" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -89,11 +88,6 @@
             <path>
               <item name="gfb-android" type="b2602c69:ProjectViewProjectNode" />
               <item name="gfb-android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gfb-android" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gfb-android" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -128,12 +122,12 @@
       <updated>1539439807052</updated>
       <workItem from="1539439808567" duration="7105000" />
       <workItem from="1540813657711" duration="258000" />
-      <workItem from="1540813959002" duration="59000" />
+      <workItem from="1540813959002" duration="791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64000" />
+    <option name="totallyTimeSpent" value="796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -170,8 +164,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/html/setting.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="359" column="66" selection-start-line="359" selection-start-column="66" selection-end-line="359" selection-end-column="66" />
+        <state relative-caret-position="446">
+          <caret line="358" column="115" selection-start-line="358" selection-start-column="115" selection-end-line="359" selection-end-column="66" />
         </state>
       </provider>
     </entry>

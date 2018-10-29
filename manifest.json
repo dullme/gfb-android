@@ -2,7 +2,7 @@
 	"id": "H5EC38340",
 	"name": "\u74dc\u5206\u5b9d",
 	"version": {
-		"name": "v1.6.0",
+		"name": "v1.6.1",
 		"code": 44
 	},
 	"kernel": {
@@ -170,7 +170,7 @@
 				}
 			},
 			"splashscreen": {
-				"android": {
+				"android": {"hdpi":"/Users/dullme/Desktop/480-800.png","xhdpi":"/Users/dullme/Desktop/720-1080.png","xxhdpi":"/Users/dullme/Desktop/1080-1920.png"
 					
 					
 					
@@ -303,7 +303,7 @@
 		"popGesture": "close",
 		"runmode": "normal",
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
-		"adid": "123911090310",
+		
 		"statusbar": []
 	},
 	"dependencies": {

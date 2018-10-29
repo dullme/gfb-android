@@ -178,7 +178,7 @@
 					sendData = data;
 					//获取是否可以浏览广告 readCount
 					//var posturl = "http://192.168.1.106:8080/appdata/adtime";
-					var posturl = 'http://gfb.wotuijie.com/api/can-see';
+					var posturl = 'http://47.94.165.247:17909/api/can-see';
 					console.log("posturl:" + posturl);
 					mui.ajax(posturl, {
 						dataType: 'JSON', //服务器返回json格式数据  adtime
@@ -248,7 +248,7 @@
 				//				var b64 = new Base64();
 				//				var posturl = b64.decode(sendData.kernel.code)+"appdata/adcontext";
 				console.log('准备请求广告了')
-				var posturl = 'http://gfb.wotuijie.com/api/image'
+				var posturl = 'http://47.94.165.247:17909/api/image'
 				mui.ajax(posturl, {
 					//					data:{"version":sendData.kernel.version,"kernel":b64.encode(sendData.kernel.kernel),
 					//							"reading":countx,"body":b64.encode(sendstr)},
@@ -436,7 +436,7 @@ plus.nativeUI.closeWaiting();
 				//mui.toast('程序在前台运行');
 				mui.getJSON("../manifest.json", null, function(data) {
 					sendData = data;
-					var posturl = 'http://gfb.wotuijie.com/api/can-see';
+					var posturl = 'http://47.94.165.247:17909/api/can-see';
 
 					mui.ajax(posturl, {
 						dataType: 'JSON', //服务器返回json格式数据  

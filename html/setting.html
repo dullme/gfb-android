@@ -528,7 +528,7 @@
 				var mask = mui.createMask();
 				//向服务器发送扫描数据
 				//var posturl = "http://192.168.1.106:8080/appdata/register";
-				var posturl = "http://gfb.wotuijie.com/api/user-info";
+				var posturl = "http://47.94.165.247:17909/api/user-info";
 				console.log('Bearer ' + localStorage.getItem('token'))
 				console.log("posturl:" + posturl);
 				mui.ajax(posturl, {
@@ -596,7 +596,7 @@
 				})
 				//向服务器发送扫描数据
 				//var posturl = "http://192.168.1.106:8080/appdata/register";
-				var posturl = "http://gfb.wotuijie.com/api/complex";
+				var posturl = "http://47.94.165.247:17909/api/complex";
 				console.log('Bearer ' + localStorage.getItem('token'))
 				console.log("posturl:" + posturl);
 				mui.ajax(posturl, {
@@ -657,7 +657,7 @@
 //						mui.toast('请先登录')
 					}
 				})
-				var posturl = "http://gfb.wotuijie.com/api/withdraw";
+				var posturl = "http://47.94.165.247:17909/api/withdraw";
 				console.log('Bearer ' + localStorage.getItem('token'))
 				console.log("posturl:" + posturl);
 				mui.ajax(posturl, {
@@ -720,7 +720,7 @@
 				var mask = mui.createMask();
 				//向服务器发送扫描数据
 				//var posturl = "http://192.168.1.106:8080/appdata/register";
-				var posturl = "http://gfb.wotuijie.com/api/withdraw?withdraw=" + document.querySelector("#payMoney").innerText;
+				var posturl = "http://47.94.165.247:17909/api/withdraw?withdraw=" + document.querySelector("#payMoney").innerText;
 				console.log('Bearer ' + localStorage.getItem('token'))
 				console.log("posturl:" + posturl);
 				mui.ajax(posturl, {
